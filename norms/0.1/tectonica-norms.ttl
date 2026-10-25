@@ -1,0 +1,389 @@
+# Tectonica norms v0.1
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright the Tectonica contributors. Licensed under the Creative Commons
+# Attribution 4.0 International License (see ontology/LICENSE).
+#
+# Architectural norms as SHACL shapes (W3C Shapes Constraint Language). Every
+# norm is a warning, never an error: a brief may deviate on purpose (a ruin,
+# a stage set, a game level). Each norm carries:
+#   tec:normId       stable id, used by briefs to accept a deviation
+#   tec:normProfile  convention | england | us-irc
+#   tec:normKind     tec:DesignConvention | tec:BuildingCode | tec:AccessibilityStandard
+#   tec:normSource   citation; code requirements are paraphrased, not quoted
+#
+# Shapes run over the union of the layer file, the derived topology and the
+# derived quantities (all JSON-LD, so all RDF). Code values are minimums or
+# maximums for new dwellings in the named jurisdiction and edition; they are
+# simplified (for example one stair category only) and are not a substitute
+# for the code itself.
+
+@prefix tecn: <https://w3id.org/tectonica/norms#> .
+@prefix tec:  <https://w3id.org/tectonica/core#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+tecn:
+    a owl:Ontology ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "Tectonica norms"@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "Design conventions and building code requirements as SHACL warnings."@en ;
+    sh:declare
+        [ sh:prefix "tec" ; sh:namespace "https://w3id.org/tectonica/core#"^^xsd:anyURI ] ,
+        [ sh:prefix "rdf" ; sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ] ,
+        [ sh:prefix "rdfs" ; sh:namespace "http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI ] .
+
+#################################################################
+# Profile: convention (design conventions, on by default)
+#################################################################
+
+tecn:conv-bath-door a sh:NodeShape ;
+    rdfs:label "Bathrooms are entered through a door"@en ;
+    tec:normId "CONV-BATH-DOOR" ;
+    tec:normProfile "convention" ;
+    tec:normKind tec:DesignConvention ;
+    tec:normSource "Common residential practice: privacy" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Bathroom '{?label}' is entered through '{?via}', which is not a door" ;
+        sh:select """
+            SELECT $this ?label ?via WHERE {
+                $this tec:function tec:Bathroom ; tec:overlays ?space .
+                OPTIONAL { $this rdfs:label ?label }
+                ?passage tec:connects ?space .
+                OPTIONAL { ?passage rdfs:label ?via }
+                FILTER NOT EXISTS { ?passage a tec:Door }
+            }""" ] .
+
+tecn:conv-bed-door a sh:NodeShape ;
+    rdfs:label "Bedrooms are entered through a door"@en ;
+    tec:normId "CONV-BED-DOOR" ;
+    tec:normProfile "convention" ;
+    tec:normKind tec:DesignConvention ;
+    tec:normSource "Common residential practice: privacy" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Bedroom '{?label}' is entered through '{?via}', which is not a door" ;
+        sh:select """
+            SELECT $this ?label ?via WHERE {
+                $this tec:function tec:Bedroom ; tec:overlays ?space .
+                OPTIONAL { $this rdfs:label ?label }
+                ?passage tec:connects ?space .
+                OPTIONAL { ?passage rdfs:label ?via }
+                FILTER NOT EXISTS { ?passage a tec:Door }
+            }""" ] .
+
+tecn:conv-bath-kitchen a sh:NodeShape ;
+    rdfs:label "Bathrooms do not open directly onto a kitchen"@en ;
+    tec:normId "CONV-BATH-KITCHEN" ;
+    tec:normProfile "convention" ;
+    tec:normKind tec:DesignConvention ;
+    tec:normSource "Common residential practice: hygiene" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Bathroom '{?label}' opens directly onto a kitchen" ;
+        sh:select """
+            SELECT $this ?label WHERE {
+                $this tec:function tec:Bathroom ; tec:overlays ?space .
+                OPTIONAL { $this rdfs:label ?label }
+                ?passage tec:connects ?space , ?other .
+                ?kitchen tec:function tec:Kitchen ; tec:overlays ?other .
+                FILTER (?other != ?space)
+            }""" ] .
+
+tecn:conv-entry-lock a sh:NodeShape ;
+    rdfs:label "Exterior doors have a lock"@en ;
+    tec:normId "CONV-ENTRY-LOCK" ;
+    tec:normProfile "convention" ;
+    tec:normKind tec:DesignConvention ;
+    tec:normSource "Common residential practice: security" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Door ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Exterior door '{?label}' has no lock" ;
+        sh:select """
+            SELECT $this ?label WHERE {
+                $this tec:connects ?outside .
+                ?outside a tec:ExteriorSpace .
+                OPTIONAL { $this rdfs:label ?label }
+                FILTER NOT EXISTS { ?lock a tec:Lock ; tec:componentOf $this }
+            }""" ] .
+
+tecn:conv-habitable-window a sh:NodeShape ;
+    rdfs:label "Living rooms, bedrooms and kitchens have a window"@en ;
+    tec:normId "CONV-HABITABLE-WINDOW" ;
+    tec:normProfile "convention" ;
+    tec:normKind tec:DesignConvention ;
+    tec:normSource "Common residential practice: daylight and outlook" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "'{?label}' has no window" ;
+        sh:select """
+            SELECT $this ?label WHERE {
+                $this tec:function ?f ; tec:overlays ?space .
+                FILTER (?f IN (tec:LivingRoom, tec:Bedroom, tec:Kitchen))
+                OPTIONAL { $this rdfs:label ?label }
+                ?space tec:glazedArea ?g .
+                FILTER (?g <= 0)
+            }""" ] .
+
+tecn:conv-dwelling-kitchen a sh:NodeShape ;
+    rdfs:label "A dwelling has a kitchen"@en ;
+    tec:normId "CONV-DWELLING-KITCHEN" ;
+    tec:normProfile "convention" ;
+    tec:normKind tec:DesignConvention ;
+    tec:normSource "Common residential practice" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Dwelling ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Dwelling '{?label}' has no kitchen" ;
+        sh:select """
+            SELECT $this ?label WHERE {
+                OPTIONAL { $this rdfs:label ?label }
+                FILTER NOT EXISTS { $this tec:includes ?r . ?r tec:function tec:Kitchen }
+            }""" ] .
+
+tecn:conv-dwelling-bathroom a sh:NodeShape ;
+    rdfs:label "A dwelling has a bathroom"@en ;
+    tec:normId "CONV-DWELLING-BATHROOM" ;
+    tec:normProfile "convention" ;
+    tec:normKind tec:DesignConvention ;
+    tec:normSource "Common residential practice" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Dwelling ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Dwelling '{?label}' has no bathroom" ;
+        sh:select """
+            SELECT $this ?label WHERE {
+                OPTIONAL { $this rdfs:label ?label }
+                FILTER NOT EXISTS { $this tec:includes ?r . ?r tec:function tec:Bathroom }
+            }""" ] .
+
+#################################################################
+# Profile: england (Building Regulations Approved Documents and the
+# Nationally Described Space Standard; Crown copyright, Open Government
+# Licence; requirements paraphrased)
+#################################################################
+
+tecn:eng-adk-rise a sh:NodeShape ;
+    rdfs:label "Private stair rise at most 220 mm"@en ;
+    tec:normId "ENG-ADK-RISE" ;
+    tec:normProfile "england" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "Approved Document K (England), Section 1, Table 1.1, private stair" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:riserHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Stair rise {?r} m is above 0.220 m" ;
+        sh:select """SELECT $this ?r WHERE { $this tec:riserHeight ?r . FILTER (?r > 0.220) }""" ] .
+
+tecn:eng-adk-going a sh:NodeShape ;
+    rdfs:label "Private stair going at least 220 mm"@en ;
+    tec:normId "ENG-ADK-GOING" ;
+    tec:normProfile "england" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "Approved Document K (England), Section 1, Table 1.1, private stair" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:going ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Stair going {?g} m is below 0.220 m" ;
+        sh:select """SELECT $this ?g WHERE { $this tec:going ?g . FILTER (?g < 0.220) }""" ] .
+
+tecn:eng-adk-pitch a sh:NodeShape ;
+    rdfs:label "Private stair pitch at most 42 degrees"@en ;
+    tec:normId "ENG-ADK-PITCH" ;
+    tec:normProfile "england" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "Approved Document K (England), Section 1, Table 1.1, private stair" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:riserHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Stair pitch is above 42 degrees (rise {?r} m, going {?g} m)" ;
+        sh:select """SELECT $this ?r ?g WHERE { $this tec:riserHeight ?r ; tec:going ?g . FILTER (?r / ?g > 0.9004) }""" ] .
+
+tecn:eng-adk-2rg a sh:NodeShape ;
+    rdfs:label "Twice the rise plus the going between 550 and 700 mm"@en ;
+    tec:normId "ENG-ADK-2RG" ;
+    tec:normProfile "england" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "Approved Document K (England), Section 1" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:riserHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "2R + G is outside 0.550 to 0.700 m (rise {?r} m, going {?g} m)" ;
+        sh:select """SELECT $this ?r ?g WHERE { $this tec:riserHeight ?r ; tec:going ?g . FILTER (2 * ?r + ?g < 0.550 || 2 * ?r + ?g > 0.700) }""" ] .
+
+tecn:eng-adk-guard a sh:NodeShape ;
+    rdfs:label "Guards at stairs and landings at least 900 mm high"@en ;
+    tec:normId "ENG-ADK-GUARD" ;
+    tec:normProfile "england" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "Approved Document K (England), Section 3, guarding in dwellings" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:guardHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Guard height {?h} m is below 0.900 m" ;
+        sh:select """SELECT $this ?h WHERE { $this tec:guardHeight ?h . FILTER (?h < 0.900) }""" ] .
+
+tecn:eng-ndss-bedroom a sh:NodeShape ;
+    rdfs:label "Bedrooms at least 7.5 m2"@en ;
+    tec:normId "ENG-NDSS-BEDROOM" ;
+    tec:normProfile "england" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "Technical housing standards: nationally described space standard (2015), section 10, single bedroom" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Bedroom '{?label}' is {?a} m2, below 7.5 m2" ;
+        sh:select """
+            SELECT $this ?label ?a WHERE {
+                $this tec:function tec:Bedroom ; tec:overlays ?space .
+                OPTIONAL { $this rdfs:label ?label }
+                ?space tec:floorArea ?a .
+                FILTER (?a < 7.5)
+            }""" ] .
+
+tecn:eng-ndss-height a sh:NodeShape ;
+    rdfs:label "Habitable rooms at least 2.3 m high"@en ;
+    tec:normId "ENG-NDSS-HEIGHT" ;
+    tec:normProfile "england" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "Technical housing standards: nationally described space standard (2015), section 10 (2.3 m over at least 75 percent of the gross internal area; checked per room here)" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "'{?label}' is {?h} m high, below 2.3 m" ;
+        sh:select """
+            SELECT $this ?label ?h WHERE {
+                $this tec:function ?f ; tec:overlays ?space .
+                FILTER (?f IN (tec:LivingRoom, tec:Bedroom, tec:Kitchen))
+                OPTIONAL { $this rdfs:label ?label }
+                ?space tec:clearHeight ?h .
+                FILTER (?h < 2.3)
+            }""" ] .
+
+#################################################################
+# Profile: us-irc (International Residential Code 2021; requirements
+# paraphrased, imperial values converted to metres)
+#################################################################
+
+tecn:irc-riser a sh:NodeShape ;
+    rdfs:label "Stair riser at most 7 3/4 in (196 mm)"@en ;
+    tec:normId "IRC-RISER" ;
+    tec:normProfile "us-irc" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "International Residential Code 2021, R311.7.5.1" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:riserHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Stair riser {?r} m is above 0.196 m" ;
+        sh:select """SELECT $this ?r WHERE { $this tec:riserHeight ?r . FILTER (?r > 0.1969) }""" ] .
+
+tecn:irc-tread a sh:NodeShape ;
+    rdfs:label "Stair tread depth at least 10 in (254 mm)"@en ;
+    tec:normId "IRC-TREAD" ;
+    tec:normProfile "us-irc" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "International Residential Code 2021, R311.7.5.2" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:going ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Stair tread depth {?g} m is below 0.254 m" ;
+        sh:select """SELECT $this ?g WHERE { $this tec:going ?g . FILTER (?g < 0.254) }""" ] .
+
+tecn:irc-guard a sh:NodeShape ;
+    rdfs:label "Guards at least 36 in (914 mm) high"@en ;
+    tec:normId "IRC-GUARD" ;
+    tec:normProfile "us-irc" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "International Residential Code 2021, R312.1.2" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:guardHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Guard height {?h} m is below 0.914 m" ;
+        sh:select """SELECT $this ?h WHERE { $this tec:guardHeight ?h . FILTER (?h < 0.914) }""" ] .
+
+tecn:irc-ceiling a sh:NodeShape ;
+    rdfs:label "Habitable rooms at least 7 ft (2.134 m) high"@en ;
+    tec:normId "IRC-CEILING" ;
+    tec:normProfile "us-irc" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "International Residential Code 2021, R305.1" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "'{?label}' is {?h} m high, below 2.134 m" ;
+        sh:select """
+            SELECT $this ?label ?h WHERE {
+                $this tec:function ?f ; tec:overlays ?space .
+                FILTER (?f IN (tec:LivingRoom, tec:Bedroom, tec:Kitchen))
+                OPTIONAL { $this rdfs:label ?label }
+                ?space tec:clearHeight ?h .
+                FILTER (?h < 2.134)
+            }""" ] .
+
+tecn:irc-room-area a sh:NodeShape ;
+    rdfs:label "Habitable rooms other than kitchens at least 70 sq ft (6.5 m2)"@en ;
+    tec:normId "IRC-ROOM-AREA" ;
+    tec:normProfile "us-irc" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "International Residential Code 2021, R304.1" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "'{?label}' is {?a} m2, below 6.5 m2" ;
+        sh:select """
+            SELECT $this ?label ?a WHERE {
+                $this tec:function ?f ; tec:overlays ?space .
+                FILTER (?f IN (tec:LivingRoom, tec:Bedroom))
+                OPTIONAL { $this rdfs:label ?label }
+                ?space tec:floorArea ?a .
+                FILTER (?a < 6.503)
+            }""" ] .
+
+tecn:irc-light a sh:NodeShape ;
+    rdfs:label "Habitable rooms glazed for at least 8 percent of their floor area"@en ;
+    tec:normId "IRC-LIGHT" ;
+    tec:normProfile "us-irc" ;
+    tec:normKind tec:BuildingCode ;
+    tec:normSource "International Residential Code 2021, R303.1 (natural light)" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "'{?label}' has {?g} m2 of glazing for {?a} m2 of floor, below 8 percent" ;
+        sh:select """
+            SELECT $this ?label ?g ?a WHERE {
+                $this tec:function ?f ; tec:overlays ?space .
+                FILTER (?f IN (tec:LivingRoom, tec:Bedroom, tec:Kitchen))
+                OPTIONAL { $this rdfs:label ?label }
+                ?space tec:glazedArea ?g ; tec:floorArea ?a .
+                FILTER (?g < 0.08 * ?a)
+            }""" ] .

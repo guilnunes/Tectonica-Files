@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tectonica GlobalId IRIs</title>
+<style>
+:root { --fg: #1d1f24; --muted: #5b6070; --bg: #ffffff; --line: #e3e5ea; --accent: #9b3d2c; --chip: #f3f1ee; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e9ec; --muted: #a3a8b5; --bg: #15171b; --line: #2b2f37; --accent: #e08a6f; --chip: #22252b; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.8rem; margin: 0.2em 0 0.3em; }
+h2 { font-size: 1.25rem; margin-top: 2.2em; border-bottom: 1px solid var(--line); padding-bottom: 0.3em; }
+h3 { font-size: 1.05rem; margin: 1.6em 0 0.2em; }
+a { color: var(--accent); }
+code { background: var(--chip); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+.muted { color: var(--muted); }
+.term { border-top: 1px solid var(--line); padding: 0.6em 0; }
+.term:target { background: var(--chip); }
+.meta { color: var(--muted); font-size: 0.92em; }
+nav a { margin-right: 1em; }
+ul.index { columns: 2; padding-left: 1.2em; }
+@media (max-width: 560px) { ul.index { columns: 1; } }
+</style>
+</head>
+<body>
+<main>
+<nav><a href="../">Home</a><a href="../core/">Ontology</a><a href="../norms/">Norms</a><a href="https://github.com/guilnunes/tectonica-files">Source</a></nav>
+<h1>GlobalId IRIs</h1><p>Nodes of Tectonica layer files are identified by IRIs of the form <code>https://w3id.org/tectonica/guid/&lt;GlobalId&gt;</code>, where the GlobalId is the 22 character IFC GlobalId of the element (or a GlobalId derived from a semantic path for records that are not IFC elements). There is no central registry: an IRI names a node inside the model files that use it, and resolves to this page.</p>
+</main>
+</body>
+</html>

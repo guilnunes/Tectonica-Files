@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/tectonica/schemas/layer-file/0.1.json",
+  "title": "Tectonica layer file",
+  "description": "Plain JSON structure of a Tectonica layer file (format 0.1). The same document is JSON-LD through its embedded @context; this schema checks the JSON shape, the ontology check covers the semantics. Every section is an object keyed by GlobalId.",
+  "type": "object",
+  "required": [
+    "@context", "id", "type", "path", "formatVersion", "ifcFile", "ifcSchema", "ifcSha256", "ifcProject", "timestamp",
+    "generator", "elements", "materials", "components", "containers", "materialStates", "humanAbstractions", "rules", "provenance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "@context": {"type": "object"},
+    "id": {"$ref": "#/$defs/guid"},
+    "type": {"const": "LayerFile"},
+    "path": {"$ref": "#/$defs/path"},
+    "label": {"type": "string"},
+    "formatVersion": {"type": "string", "pattern": "^0\\.1\\.[0-9]+$"},
+    "ifcFile": {"type": "string", "minLength": 1},
+    "ifcSchema": {"enum": ["IFC2X3", "IFC4", "IFC4X3_ADD2"]},
+    "ifcSha256": {"$ref": "#/$defs/sha256"},
+    "ifcProject": {"$ref": "#/$defs/guid"},
+    "timestamp": {"type": "string"},
+    "briefSha256": {"$ref": "#/$defs/sha256"},
+    "generator": {
+      "type": "object",
+      "required": ["id", "type", "label", "version", "tectonicaVersion"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/guid"},
+        "type": {"const": "Generator"},
+        "label": {"type": "string"},
+        "version": {"type": "string"},
+        "tectonicaVersion": {"type": "string"}
+      }
+    },
+    "elements": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/element"}},
+    "materials": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/material"}},
+    "components": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/component"}},
+    "containers": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/container"}},
+    "materialStates": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/materialState"}},
+    "humanAbstractions": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/abstraction"}},
+    "rules": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/rule"}},
+    "provenance": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/provenance"}}
+  },
+  "$defs": {
+    "guid": {"type": "string", "pattern": "^[0-3][0-9A-Za-z_$]{21}$"},
+    "guids": {"type": "array", "items": {"$ref": "#/$defs/guid"}},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "path": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*(/[a-z0-9][a-z0-9._-]*)*(#[a-z0-9][a-z0-9._-]*)?$"},
+    "unit": {"type": "number", "minimum": 0, "maximum": 1},
+    "section": {"type": "object", "propertyNames": {"$ref": "#/$defs/guid"}},
+    "element": {
+      "type": "object",
+      "required": ["type", "path", "ifcEntity"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"type": "string", "pattern": "^[A-Z][A-Za-z]+$"},
+        "path": {"$ref": "#/$defs/path"},
+        "label": {"type": "string"},
+        "ifcEntity": {"type": "string", "pattern": "^Ifc[A-Za-z]+$"}
+      }
+    },
+    "material": {
+      "type": "object",
+      "required": ["type", "path", "label", "ifcMaterialName", "category", "density", "stability", "decayRate", "resistance"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "Material"},
+        "path": {"$ref": "#/$defs/path"},
+        "label": {"type": "string"},
+        "ifcMaterialName": {"type": "string"},
+        "category": {"type": "string"},
+        "density": {"type": "number", "exclusiveMinimum": 0},
+        "stability": {"$ref": "#/$defs/unit"},
+        "decayRate": {"$ref": "#/$defs/unit"},
+        "resistance": {"$ref": "#/$defs/unit"}
+      }
+    },
+    "component": {
+      "type": "object",
+      "required": ["type", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["Lock", "Key", "Handle", "Hinge", "Curtain"]},
+        "path": {"$ref": "#/$defs/path"},
+        "label": {"type": "string"},
+        "componentOf": {"$ref": "#/$defs/guid"},
+        "requiresKey": {"$ref": "#/$defs/guid"},
+        "fitsLock": {"$ref": "#/$defs/guid"},
+        "placedIn": {"$ref": "#/$defs/guid"},
+        "relativePosition": {"enum": ["On", "Under", "Inside", "Beside"]},
+        "locked": {"type": "boolean"},
+        "isOpen": {"type": "boolean"},
+        "mountingHeight": {"type": "number", "minimum": 0}
+      },
+      "allOf": [
+        {"if": {"properties": {"type": {"const": "Lock"}}}, "then": {"required": ["componentOf", "requiresKey", "locked"]}},
+        {"if": {"properties": {"type": {"const": "Key"}}}, "then": {"required": ["placedIn"]}},
+        {"if": {"properties": {"type": {"enum": ["Handle", "Hinge", "Curtain"]}}}, "then": {"required": ["componentOf"]}}
+      ]
+    },
+    "item": {
+      "type": "object",
+      "required": ["id", "type", "path", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/guid"},
+        "type": {"const": "Item"},
+        "path": {"$ref": "#/$defs/path"},
+        "label": {"type": "string"}
+      }
+    },
+    "container": {
+      "type": "object",
+      "required": ["type", "path", "contains"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["Container", "Wardrobe", "Box"]},
+        "path": {"$ref": "#/$defs/path"},
+        "label": {"type": "string"},
+        "capacity": {"type": "number", "minimum": 0},
+        "contains": {"type": "array", "items": {"anyOf": [{"$ref": "#/$defs/item"}, {"$ref": "#/$defs/guid"}]}}
+      }
+    },
+    "materialState": {
+      "type": "object",
+      "required": ["type", "path", "stateOf", "material", "stability", "decay", "resistance"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "MaterialState"},
+        "path": {"$ref": "#/$defs/path"},
+        "stateOf": {"$ref": "#/$defs/guid"},
+        "material": {"$ref": "#/$defs/guid"},
+        "stability": {"$ref": "#/$defs/unit"},
+        "decay": {"$ref": "#/$defs/unit"},
+        "resistance": {"$ref": "#/$defs/unit"}
+      }
+    },
+    "abstraction": {
+      "type": "object",
+      "required": ["type", "path", "label", "overlays"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["Room", "OutdoorArea", "Dwelling"]},
+        "path": {"$ref": "#/$defs/path"},
+        "label": {"type": "string"},
+        "function": {"type": "string", "pattern": "^[A-Z][A-Za-z]+$"},
+        "overlays": {"$ref": "#/$defs/guid"},
+        "includes": {"$ref": "#/$defs/guids"}
+      }
+    },
+    "rule": {
+      "type": "object",
+      "required": ["type", "path", "ruleId", "version"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "Rule"},
+        "path": {"$ref": "#/$defs/path"},
+        "ruleId": {"type": "string", "pattern": "^[a-z0-9_]+(\\.[a-z0-9_-]+)+$"},
+        "version": {"type": "string"},
+        "comment": {"type": "string"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["type", "path", "about", "rule", "generatedBy", "inputs"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "ProvenanceRecord"},
+        "path": {"$ref": "#/$defs/path"},
+        "about": {"$ref": "#/$defs/guid"},
+        "rule": {"$ref": "#/$defs/guid"},
+        "generatedBy": {"$ref": "#/$defs/guid"},
+        "inputs": {"type": "object"}
+      }
+    }
+  }
+}

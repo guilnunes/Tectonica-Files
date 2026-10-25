@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tectonica core ontology</title>
+<style>
+:root { --fg: #1d1f24; --muted: #5b6070; --bg: #ffffff; --line: #e3e5ea; --accent: #9b3d2c; --chip: #f3f1ee; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e9ec; --muted: #a3a8b5; --bg: #15171b; --line: #2b2f37; --accent: #e08a6f; --chip: #22252b; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.8rem; margin: 0.2em 0 0.3em; }
+h2 { font-size: 1.25rem; margin-top: 2.2em; border-bottom: 1px solid var(--line); padding-bottom: 0.3em; }
+h3 { font-size: 1.05rem; margin: 1.6em 0 0.2em; }
+a { color: var(--accent); }
+code { background: var(--chip); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+.muted { color: var(--muted); }
+.term { border-top: 1px solid var(--line); padding: 0.6em 0; }
+.term:target { background: var(--chip); }
+.meta { color: var(--muted); font-size: 0.92em; }
+nav a { margin-right: 1em; }
+ul.index { columns: 2; padding-left: 1.2em; }
+@media (max-width: 560px) { ul.index { columns: 1; } }
+</style>
+</head>
+<body>
+<main>
+<nav><a href="../">Home</a><a href="../core/">Ontology</a><a href="../norms/">Norms</a><a href="https://github.com/guilnunes/tectonica-files">Source</a></nav>
+<h1>Tectonica core ontology</h1>
+<p class="muted">Version 0.1. IRI <code>https://w3id.org/tectonica/core</code>, prefix <code>tec:</code>. License <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Download: <a href="tectonica-core.ttl">Turtle (latest)</a>, <a href="0.1/tectonica-core.ttl">Turtle 0.1</a>.</p>
+<p>An ontology of parts for architecture and the built world. Physical elements form the base layer; rooms and other human definitions are abstractions laid over it; components, containers, material states and provenance are separate logical layers that refer to the same element identifiers.</p>
+<p>48 classes, 68 properties, 14 named individuals. Aligned to <a href="https://w3id.org/bot">BOT</a>; IFC 4.3 class names are given per class.</p>
+<h2>Index</h2><ul class="index">
+<li><a href="#Box">Box</a></li>
+<li><a href="#Building">Building</a></li>
+<li><a href="#BuiltElement">Built element</a></li>
+<li><a href="#Component">Component</a></li>
+<li><a href="#Container">Container</a></li>
+<li><a href="#Curb">Curb</a></li>
+<li><a href="#Curtain">Curtain</a></li>
+<li><a href="#Door">Door</a></li>
+<li><a href="#Dwelling">Dwelling</a></li>
+<li><a href="#ExteriorSpace">Exterior space</a></li>
+<li><a href="#Furnishing">Furnishing</a></li>
+<li><a href="#Generator">Generator</a></li>
+<li><a href="#Handle">Handle</a></li>
+<li><a href="#Hinge">Hinge</a></li>
+<li><a href="#HumanAbstraction">Human abstraction</a></li>
+<li><a href="#Item">Item</a></li>
+<li><a href="#Key">Key</a></li>
+<li><a href="#LayerFile">Layer file</a></li>
+<li><a href="#Lock">Lock</a></li>
+<li><a href="#Mat">Mat</a></li>
+<li><a href="#Material">Material</a></li>
+<li><a href="#MaterialState">Material state</a></li>
+<li><a href="#NormKind">Norm kind</a></li>
+<li><a href="#Opening">Opening</a></li>
+<li><a href="#OutdoorArea">Outdoor area</a></li>
+<li><a href="#PhysicalElement">Physical element</a></li>
+<li><a href="#PhysicalObject">Physical object</a></li>
+<li><a href="#PortableObject">Portable object</a></li>
+<li><a href="#ProvenanceRecord">Provenance record</a></li>
+<li><a href="#Railing">Railing</a></li>
+<li><a href="#RelativePosition">Relative position</a></li>
+<li><a href="#RoadSurface">Road surface</a></li>
+<li><a href="#Roof">Roof</a></li>
+<li><a href="#RoofSlab">Roof slab</a></li>
+<li><a href="#Room">Room</a></li>
+<li><a href="#RoomFunction">Room function</a></li>
+<li><a href="#Rule">Rule</a></li>
+<li><a href="#Site">Site</a></li>
+<li><a href="#Slab">Slab</a></li>
+<li><a href="#Space">Space</a></li>
+<li><a href="#SpatialElement">Spatial element</a></li>
+<li><a href="#Stair">Stair</a></li>
+<li><a href="#StairFlight">Stair flight</a></li>
+<li><a href="#Storey">Storey</a></li>
+<li><a href="#Terrain">Terrain</a></li>
+<li><a href="#Wall">Wall</a></li>
+<li><a href="#Wardrobe">Wardrobe</a></li>
+<li><a href="#Window">Window</a></li>
+</ul><h2>Classes</h2>
+<div class="term" id="Box"><h3>Box <code>tec:Box</code></h3><div>A rigid container with a lid or open top.</div><div class="meta">Subclass of: <a href="#Container"><code>tec:Container</code></a>, <a href="#Furnishing"><code>tec:Furnishing</code></a></div><div class="meta">IFC: <code>IfcFurniture</code> PredefinedType <code>USERDEFINED</code> ObjectType <code>BOX</code></div></div>
+<div class="term" id="Building"><h3>Building <code>tec:Building</code></h3><div>A structure that provides shelter, located on a site and decomposed into storeys.</div><div class="meta">Subclass of: <code>bot:Building</code>, <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcBuilding</code></div></div>
+<div class="term" id="BuiltElement"><h3>Built element <code>tec:BuiltElement</code></h3><div>A physical element that is part of the construction (IfcBuildingElement in IFC4).</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcBuiltElement</code></div></div>
+<div class="term" id="Component"><h3>Component <code>tec:Component</code></h3><div>A module that realises a human concept (access control, operation, shading) as a part of a host element. Stored on the layer side and attached to the host by its GlobalId.</div><div class="meta">Subclass of: <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div></div>
+<div class="term" id="Container"><h3>Container <code>tec:Container</code></h3><div>An object that holds contents, related to them by tec:contains.</div><div class="meta">Subclass of: <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div></div>
+<div class="term" id="Curb"><h3>Curb <code>tec:Curb</code></h3><div>A raised edge between a road surface and a sidewalk or verge. IFC 4.3 entity (IfcKerb); no IFC4 equivalent.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcKerb</code></div></div>
+<div class="term" id="Curtain"><h3>Curtain <code>tec:Curtain</code></h3><div>A textile screen attached to a window that can be opened or closed to control light and view.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
+<div class="term" id="Door"><h3>Door <code>tec:Door</code></h3><div>A built element that fills an opening and can be passed through when open.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcDoor</code></div></div>
+<div class="term" id="Dwelling"><h3>Dwelling <code>tec:Dwelling</code></h3><div>A home: a group of rooms used by one household, laid over a building.</div><div class="meta">Subclass of: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="ExteriorSpace"><h3>Exterior space <code>tec:ExteriorSpace</code></h3><div>The open space of a site outside buildings. It is the &#x27;outside&#x27; node of topology graphs.</div><div class="meta">Subclass of: <a href="#Space"><code>tec:Space</code></a></div><div class="meta">IFC: <code>IfcSpace</code> PredefinedType <code>EXTERNAL</code></div></div>
+<div class="term" id="Furnishing"><h3>Furnishing <code>tec:Furnishing</code></h3><div>A movable but placed physical element such as furniture or a mat (IfcFurnishingElement family).</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcFurniture</code></div></div>
+<div class="term" id="Generator"><h3>Generator <code>tec:Generator</code></h3><div>The program, with its version, that applied rules to a brief.</div><div class="meta">Subclass of: <code>prov:SoftwareAgent</code></div></div>
+<div class="term" id="Handle"><h3>Handle <code>tec:Handle</code></h3><div>A grip used to operate a door, window or container.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
+<div class="term" id="Hinge"><h3>Hinge <code>tec:Hinge</code></h3><div>A pivot joint on which a door, window or lid turns.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
+<div class="term" id="HumanAbstraction"><h3>Human abstraction <code>tec:HumanAbstraction</code></h3><div>A human made definition laid over the physical base layer (rooms, dwellings, zoning). It refers to physical or spatial elements and never replaces them.</div></div>
+<div class="term" id="Item"><h3>Item <code>tec:Item</code></h3><div>A portable object that can be held in a container, for example clothing or a book.</div><div class="meta">Subclass of: <a href="#PortableObject"><code>tec:PortableObject</code></a></div></div>
+<div class="term" id="Key"><h3>Key <code>tec:Key</code></h3><div>A portable component that operates one or more locks.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a>, <a href="#PortableObject"><code>tec:PortableObject</code></a></div></div>
+<div class="term" id="LayerFile"><h3>Layer file <code>tec:LayerFile</code></h3><div>A JSON-LD document holding the non geometric layers of a model, linked to an IFC file by GlobalIds.</div><div class="meta">Subclass of: <code>prov:Entity</code></div></div>
+<div class="term" id="Lock"><h3>Lock <code>tec:Lock</code></h3><div>A mechanism that keeps its host (usually a door) shut until operated with the key it requires.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
+<div class="term" id="Mat"><h3>Mat <code>tec:Mat</code></h3><div>A flat textile or fibre object lying on a floor or the ground, such as a doormat. Objects can be placed under it.</div><div class="meta">Subclass of: <a href="#Furnishing"><code>tec:Furnishing</code></a></div><div class="meta">IFC: <code>IfcFurniture</code> PredefinedType <code>USERDEFINED</code> ObjectType <code>MAT</code></div></div>
+<div class="term" id="Material"><h3>Material <code>tec:Material</code></h3><div>A substance elements are made of, with base matter properties: stability, decay rate and resistance.</div><div class="meta">IFC: <code>IfcMaterial</code></div></div>
+<div class="term" id="MaterialState"><h3>Material state <code>tec:MaterialState</code></h3><div>The current condition of the matter of one element: its material and present stability, decay and resistance.</div></div>
+<div class="term" id="NormKind"><h3>Norm kind <code>tec:NormKind</code></h3><div>Where a norm comes from: a design convention, a building code or an accessibility standard.</div></div>
+<div class="term" id="Opening"><h3>Opening <code>tec:Opening</code></h3><div>A void cut through a host element, placed parametrically on the host. It is not matter; a door or window may fill it, or it may stay open as a passage.</div><div class="meta">Subclass of: <code>bot:Element</code></div><div class="meta">IFC: <code>IfcOpeningElement</code></div></div>
+<div class="term" id="OutdoorArea"><h3>Outdoor area <code>tec:OutdoorArea</code></h3><div>A named outdoor place, such as a front yard, laid over an exterior space.</div><div class="meta">Subclass of: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="PhysicalElement"><h3>Physical element <code>tec:PhysicalElement</code></h3><div>A fixed physical part of the built world with exact parametric geometry, stored on the IFC side.</div><div class="meta">Subclass of: <code>bot:Element</code>, <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div><div class="meta">IFC: <code>IfcElement</code></div></div>
+<div class="term" id="PhysicalObject"><h3>Physical object <code>tec:PhysicalObject</code></h3><div>Anything made of matter: fixed elements of the built world and portable objects.</div></div>
+<div class="term" id="PortableObject"><h3>Portable object <code>tec:PortableObject</code></h3><div>A physical object that is carried rather than placed, with no own geometry at the current level of detail; stored on the layer side only.</div><div class="meta">Subclass of: <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div></div>
+<div class="term" id="ProvenanceRecord"><h3>Provenance record <code>tec:ProvenanceRecord</code></h3><div>The record of one generation step: which rule, with which inputs and which generator, produced an element or record.</div><div class="meta">Subclass of: <code>prov:Activity</code></div></div>
+<div class="term" id="Railing"><h3>Railing <code>tec:Railing</code></h3><div>A guard or handrail along an edge, such as a stairwell or a stair flight.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcRailing</code></div></div>
+<div class="term" id="RelativePosition"><h3>Relative position <code>tec:RelativePosition</code></h3><div>How an object sits relative to the thing it is placed in or on. Instances: tec:On, tec:Under, tec:Inside, tec:Beside.</div></div>
+<div class="term" id="RoadSurface"><h3>Road surface <code>tec:RoadSurface</code></h3><div>The physical paved surface of a road or path: length, width, elevation, material, curvature. Lanes and traffic are a separate movement layer. IFC 4.3 entity; no direct IFC4 equivalent (IfcSlab is used there).</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcPavement</code></div></div>
+<div class="term" id="Roof"><h3>Roof <code>tec:Roof</code></h3><div>The covering of the top of a building, usually an aggregate of roof slabs.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcRoof</code></div></div>
+<div class="term" id="RoofSlab"><h3>Roof slab <code>tec:RoofSlab</code></h3><div>A slab that forms a plane of a roof; part of a tec:Roof.</div><div class="meta">Subclass of: <a href="#Slab"><code>tec:Slab</code></a></div><div class="meta">IFC: <code>IfcSlab</code> PredefinedType <code>ROOF</code></div></div>
+<div class="term" id="Room"><h3>Room <code>tec:Room</code></h3><div>A named place with a function, laid over a space.</div><div class="meta">Subclass of: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="RoomFunction"><h3>Room function <code>tec:RoomFunction</code></h3><div>What a room is used for. Instances are named individuals such as tec:Kitchen.</div></div>
+<div class="term" id="Rule"><h3>Rule <code>tec:Rule</code></h3><div>A named, versioned, deterministic piece of generator logic.</div><div class="meta">Subclass of: <code>prov:Plan</code></div></div>
+<div class="term" id="Site"><h3>Site <code>tec:Site</code></h3><div>A piece of land with its built and unbuilt parts; the root of the spatial structure of a project.</div><div class="meta">Subclass of: <code>bot:Site</code>, <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcSite</code></div></div>
+<div class="term" id="Slab"><h3>Slab <code>tec:Slab</code></h3><div>A planar, mostly horizontal element: floor, ceiling deck or base slab.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcSlab</code></div></div>
+<div class="term" id="Space"><h3>Space <code>tec:Space</code></h3><div>A physical void volume bounded by elements. It carries no human meaning by itself: names and functions belong to a tec:Room laid over it.</div><div class="meta">Subclass of: <code>bot:Space</code>, <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcSpace</code></div></div>
+<div class="term" id="SpatialElement"><h3>Spatial element <code>tec:SpatialElement</code></h3><div>A part of the world defined by its extent rather than by matter: site, building, storey or space.</div><div class="meta">Subclass of: <code>bot:Zone</code></div><div class="meta">IFC: <code>IfcSpatialElement</code></div></div>
+<div class="term" id="Stair"><h3>Stair <code>tec:Stair</code></h3><div>A vertical passage made of flights and landings that connects spaces on different levels.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcStair</code></div></div>
+<div class="term" id="StairFlight"><h3>Stair flight <code>tec:StairFlight</code></h3><div>An uninterrupted run of steps, part of a stair.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcStairFlight</code></div></div>
+<div class="term" id="Storey"><h3>Storey <code>tec:Storey</code></h3><div>A horizontal level of a building with an elevation, decomposed into spaces.</div><div class="meta">Subclass of: <code>bot:Storey</code>, <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcBuildingStorey</code></div></div>
+<div class="term" id="Terrain"><h3>Terrain <code>tec:Terrain</code></h3><div>The ground of a site as a physical element.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcGeographicElement</code> PredefinedType <code>TERRAIN</code></div></div>
+<div class="term" id="Wall"><h3>Wall <code>tec:Wall</code></h3><div>A vertical element that bounds or subdivides spaces. Openings are placed on its plane by coordinates along and up the wall.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcWall</code></div></div>
+<div class="term" id="Wardrobe"><h3>Wardrobe <code>tec:Wardrobe</code></h3><div>A tall cupboard for clothes.</div><div class="meta">Subclass of: <a href="#Container"><code>tec:Container</code></a>, <a href="#Furnishing"><code>tec:Furnishing</code></a></div><div class="meta">IFC: <code>IfcFurniture</code> PredefinedType <code>USERDEFINED</code> ObjectType <code>WARDROBE</code></div></div>
+<div class="term" id="Window"><h3>Window <code>tec:Window</code></h3><div>A built element that fills an opening and admits light and view but is not a passage.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcWindow</code></div></div>
+<h2>Properties</h2>
+<div class="term" id="about"><h3>about <code>tec:about</code></h3><div>The element or record a provenance record describes.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#ProvenanceRecord"><code>tec:ProvenanceRecord</code></a></div></div>
+<div class="term" id="adjacentTo"><h3>adjacent to <code>tec:adjacentTo</code></h3><div>Two spaces share a boundary element (wall, slab). Derived from geometry.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">Range: <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div></div>
+<div class="term" id="briefSha256"><h3>brief SHA-256 <code>tec:briefSha256</code></h3><div>SHA-256 of the brief file the model was generated from.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="capacity"><h3>capacity <code>tec:capacity</code></h3><div>Usable inner volume of a container in cubic metres.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Container"><code>tec:Container</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="category"><h3>category <code>tec:category</code></h3><div>Material family, for example masonry, concrete, timber, glass.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Material"><code>tec:Material</code></a></div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="clearHeight"><h3>clear height <code>tec:clearHeight</code></h3><div>Height from the floor to the ceiling of a space in metres, derived from its geometry.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Space"><code>tec:Space</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="componentOf"><h3>component of <code>tec:componentOf</code></h3><div>The host element a component is attached to.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#Component"><code>tec:Component</code></a></div><div class="meta">Range: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div></div>
+<div class="term" id="connects"><h3>connects <code>tec:connects</code></h3><div>A passage (door, unfilled opening or stair) lets one move between the spaces it connects. Derived from geometry; an edge of the connectivity graph.</div><div class="meta">Kind: object</div><div class="meta">Range: <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div></div>
+<div class="term" id="containedIn"><h3>contained in <code>tec:containedIn</code></h3><div>Inverse of tec:contains.</div><div class="meta">Kind: object</div></div>
+<div class="term" id="contains"><h3>contains <code>tec:contains</code></h3><div>A container holds an object as its content.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#Container"><code>tec:Container</code></a></div><div class="meta">Range: <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div></div>
+<div class="term" id="decay"><h3>decay <code>tec:decay</code></h3><div>Current decay level in [0, 1]; 0 is pristine, 1 is fully decayed.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#MaterialState"><code>tec:MaterialState</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="decayRate"><h3>decay rate <code>tec:decayRate</code></h3><div>Decay gained per year of full exposure, as a fraction.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Material"><code>tec:Material</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="density"><h3>density <code>tec:density</code></h3><div>Mass density in kilograms per cubic metre.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Material"><code>tec:Material</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="filledBy"><h3>filled by <code>tec:filledBy</code></h3><div>Inverse of tec:fills.</div><div class="meta">Kind: object</div></div>
+<div class="term" id="fills"><h3>fills <code>tec:fills</code></h3><div>A door or window fills an opening (IfcRelFillsElement).</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">Range: <a href="#Opening"><code>tec:Opening</code></a></div></div>
+<div class="term" id="fitsLock"><h3>fits lock <code>tec:fitsLock</code></h3><div>Inverse of tec:requiresKey.</div><div class="meta">Kind: object</div></div>
+<div class="term" id="floorArea"><h3>floor area <code>tec:floorArea</code></h3><div>Area of the floor of a space in square metres, derived from its geometry.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Space"><code>tec:Space</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="formatVersion"><h3>format version <code>tec:formatVersion</code></h3><div>Version of the layer file format.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="function"><h3>function <code>tec:function</code></h3><div>What a room or area is used for.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div><div class="meta">Range: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="generatedBy"><h3>generated by <code>tec:generatedBy</code></h3><div>The generator that performed a generation step or produced a layer file.</div><div class="meta">Kind: object</div><div class="meta">Range: <a href="#Generator"><code>tec:Generator</code></a></div></div>
+<div class="term" id="glazedArea"><h3>glazed area <code>tec:glazedArea</code></h3><div>Total area of the windows that open onto a space, in square metres.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Space"><code>tec:Space</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="globalId"><h3>GlobalId <code>tec:globalId</code></h3><div>The IFC GlobalId (22 characters) of a node. Also the last segment of its IRI.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="going"><h3>going <code>tec:going</code></h3><div>Horizontal depth of one step of a stair flight in metres (the going or tread depth).</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="guardHeight"><h3>guard height <code>tec:guardHeight</code></h3><div>Height of a railing or guard in metres, derived from its geometry.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="hasComponent"><h3>has component <code>tec:hasComponent</code></h3><div>Inverse of tec:componentOf.</div><div class="meta">Kind: object</div></div>
+<div class="term" id="hostedBy"><h3>hosted by <code>tec:hostedBy</code></h3><div>Inverse of tec:hosts.</div><div class="meta">Kind: object</div></div>
+<div class="term" id="hosts"><h3>hosts <code>tec:hosts</code></h3><div>A host element (such as a wall) carries an opening that voids it (IfcRelVoidsElement).</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">Range: <a href="#Opening"><code>tec:Opening</code></a></div></div>
+<div class="term" id="ifcClass"><h3>IFC class <code>tec:ifcClass</code></h3><div>Name of the IFC entity that represents instances of this class in the IFC side of the canonical pair.</div><div class="meta">Kind: annotation</div></div>
+<div class="term" id="ifcEntity"><h3>IFC entity <code>tec:ifcEntity</code></h3><div>The IFC entity name of an element instance as written in the IFC file.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="ifcFile"><h3>IFC file <code>tec:ifcFile</code></h3><div>Relative path of the IFC file of the canonical pair.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="ifcMaterialName"><h3>IFC material name <code>tec:ifcMaterialName</code></h3><div>Name of the IfcMaterial this material corresponds to. IfcMaterial has no GlobalId, so the link is by name within one IFC file.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Material"><code>tec:Material</code></a></div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="ifcObjectType"><h3>IFC object type <code>tec:ifcObjectType</code></h3><div>ObjectType value used with a USERDEFINED predefined type to identify this class in IFC.</div><div class="meta">Kind: annotation</div></div>
+<div class="term" id="ifcPredefinedType"><h3>IFC predefined type <code>tec:ifcPredefinedType</code></h3><div>PredefinedType value that, together with tec:ifcClass, identifies this class in IFC.</div><div class="meta">Kind: annotation</div></div>
+<div class="term" id="ifcProject"><h3>IFC project <code>tec:ifcProject</code></h3><div>The IfcProject (by GlobalId) of the IFC file this layer file belongs to.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div></div>
+<div class="term" id="ifcSchema"><h3>IFC schema <code>tec:ifcSchema</code></h3><div>Schema identifier of the IFC file, for example IFC4X3_ADD2.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="ifcSha256"><h3>IFC SHA-256 <code>tec:ifcSha256</code></h3><div>SHA-256 of the IFC file bytes, binding the layer file to one exact IFC file.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="includes"><h3>includes <code>tec:includes</code></h3><div>A human abstraction groups others, for example a dwelling includes rooms.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div><div class="meta">Range: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="inputs"><h3>inputs <code>tec:inputs</code></h3><div>The inputs given to the rule, as a JSON literal.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#ProvenanceRecord"><code>tec:ProvenanceRecord</code></a></div><div class="meta">Range: <code>rdf:JSON</code></div></div>
+<div class="term" id="isOpen"><h3>is open <code>tec:isOpen</code></h3><div>True if a curtain, door or lid is currently open.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:boolean</code></div></div>
+<div class="term" id="layerComponents"><h3>layer components <code>tec:layerComponents</code></h3><div>Section of a layer file: components attached to elements.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <a href="#Component"><code>tec:Component</code></a></div></div>
+<div class="term" id="layerContainers"><h3>layer containers <code>tec:layerContainers</code></h3><div>Section of a layer file: containers and their contents.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <a href="#Container"><code>tec:Container</code></a></div></div>
+<div class="term" id="layerElements"><h3>layer elements <code>tec:layerElements</code></h3><div>Section of a layer file: the index of IFC elements with their ontology class and semantic path.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div></div>
+<div class="term" id="layerHumanAbstractions"><h3>layer human abstractions <code>tec:layerHumanAbstractions</code></h3><div>Section of a layer file: rooms, areas and dwellings.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="layerMaterialStates"><h3>layer material states <code>tec:layerMaterialStates</code></h3><div>Section of a layer file: the material state of each element.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <a href="#MaterialState"><code>tec:MaterialState</code></a></div></div>
+<div class="term" id="layerMaterials"><h3>layer materials <code>tec:layerMaterials</code></h3><div>Section of a layer file: materials and their base matter properties.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <a href="#Material"><code>tec:Material</code></a></div></div>
+<div class="term" id="layerProvenance"><h3>layer provenance <code>tec:layerProvenance</code></h3><div>Section of a layer file: one provenance record per generated element or record.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <a href="#ProvenanceRecord"><code>tec:ProvenanceRecord</code></a></div></div>
+<div class="term" id="layerRules"><h3>layer rules <code>tec:layerRules</code></h3><div>Section of a layer file: the rules used by the generator.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#LayerFile"><code>tec:LayerFile</code></a></div><div class="meta">Range: <a href="#Rule"><code>tec:Rule</code></a></div></div>
+<div class="term" id="locked"><h3>locked <code>tec:locked</code></h3><div>True if the lock is currently engaged.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Lock"><code>tec:Lock</code></a></div><div class="meta">Range: <code>xsd:boolean</code></div></div>
+<div class="term" id="material"><h3>material <code>tec:material</code></h3><div>The material an element or material state refers to.</div><div class="meta">Kind: object</div><div class="meta">Range: <a href="#Material"><code>tec:Material</code></a></div></div>
+<div class="term" id="mountingHeight"><h3>mounting height <code>tec:mountingHeight</code></h3><div>Height of a component above the bottom of its host, in metres.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Component"><code>tec:Component</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="normId"><h3>norm id <code>tec:normId</code></h3><div>Stable identifier of a norm, for example CONV-BATH-DOOR. Briefs use it to accept a deviation.</div><div class="meta">Kind: annotation</div></div>
+<div class="term" id="normKind"><h3>norm kind <code>tec:normKind</code></h3><div>The tec:NormKind of a norm.</div><div class="meta">Kind: annotation</div></div>
+<div class="term" id="normProfile"><h3>norm profile <code>tec:normProfile</code></h3><div>The profile a norm belongs to, for example convention, uk-approved-documents or us-irc. Briefs choose which profiles apply.</div><div class="meta">Kind: annotation</div></div>
+<div class="term" id="normSource"><h3>norm source <code>tec:normSource</code></h3><div>Citation of the document a norm comes from. Requirements are paraphrased, not quoted.</div><div class="meta">Kind: annotation</div></div>
+<div class="term" id="overlays"><h3>overlays <code>tec:overlays</code></h3><div>The physical or spatial element a human abstraction is laid over.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="path"><h3>semantic path <code>tec:path</code></h3><div>The semantic path the GlobalId was derived from, for example poc_house/building/storey-0/wall-south.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="placedIn"><h3>placed in <code>tec:placedIn</code></h3><div>Where an object is: a space, or another object it is in, on or under (see tec:relativePosition).</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div></div>
+<div class="term" id="relativePosition"><h3>relative position <code>tec:relativePosition</code></h3><div>How an object sits relative to the target of tec:placedIn.</div><div class="meta">Kind: object</div><div class="meta">Range: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
+<div class="term" id="requiresKey"><h3>requires key <code>tec:requiresKey</code></h3><div>A lock can only be operated with this key.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#Lock"><code>tec:Lock</code></a></div><div class="meta">Range: <a href="#Key"><code>tec:Key</code></a></div></div>
+<div class="term" id="resistance"><h3>resistance <code>tec:resistance</code></h3><div>Resistance to damage (impact, fire, moisture combined) in [0, 1]; 1 is most resistant.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="riserHeight"><h3>riser height <code>tec:riserHeight</code></h3><div>Height of one step of a stair flight in metres (the rise).</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="rule"><h3>rule <code>tec:rule</code></h3><div>The rule applied in a generation step.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#ProvenanceRecord"><code>tec:ProvenanceRecord</code></a></div><div class="meta">Range: <a href="#Rule"><code>tec:Rule</code></a></div></div>
+<div class="term" id="ruleId"><h3>rule id <code>tec:ruleId</code></h3><div>Human readable identifier of a rule, for example poc_house.wall.exterior.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="stability"><h3>stability <code>tec:stability</code></h3><div>Structural stability in [0, 1]; 1 is fully stable. Base value on a material, current value on a material state.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="stateOf"><h3>state of <code>tec:stateOf</code></h3><div>The element whose matter the state describes.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#MaterialState"><code>tec:MaterialState</code></a></div><div class="meta">Range: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div></div>
+<div class="term" id="tectonicaVersion"><h3>Tectonica version <code>tec:tectonicaVersion</code></h3><div>Version of the Tectonica core library used by a generator.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Generator"><code>tec:Generator</code></a></div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="timestamp"><h3>timestamp <code>tec:timestamp</code></h3><div>Timestamp taken from the brief (an input), never from the clock.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:string</code></div></div>
+<div class="term" id="version"><h3>version <code>tec:version</code></h3><div>Version of a rule or generator.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:string</code></div></div>
+<h2>Named individuals</h2>
+<div class="term" id="AccessibilityStandard"><h3>accessibility standard <code>tec:AccessibilityStandard</code></h3><div>A requirement of an accessibility standard.</div><div class="meta">Type: <a href="#NormKind"><code>tec:NormKind</code></a></div></div>
+<div class="term" id="Bathroom"><h3>Bathroom <code>tec:Bathroom</code></h3><div>Room for washing.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="Bedroom"><h3>Bedroom <code>tec:Bedroom</code></h3><div>Room for sleeping.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="Beside"><h3>beside <code>tec:Beside</code></h3><div>Next to the target.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
+<div class="term" id="BuildingCode"><h3>building code <code>tec:BuildingCode</code></h3><div>A requirement of a building code or regulation of a named jurisdiction.</div><div class="meta">Type: <a href="#NormKind"><code>tec:NormKind</code></a></div></div>
+<div class="term" id="Circulation"><h3>Circulation <code>tec:Circulation</code></h3><div>Space for moving between rooms: corridors, landings.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="DesignConvention"><h3>design convention <code>tec:DesignConvention</code></h3><div>Common practice in residential design that no law requires, such as a door on a bathroom.</div><div class="meta">Type: <a href="#NormKind"><code>tec:NormKind</code></a></div></div>
+<div class="term" id="EntranceHall"><h3>Entrance hall <code>tec:EntranceHall</code></h3><div>Arrival and circulation space behind the main entrance.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="FrontYard"><h3>Front yard <code>tec:FrontYard</code></h3><div>Outdoor area between a building and the street.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="Inside"><h3>inside <code>tec:Inside</code></h3><div>Within the target.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
+<div class="term" id="Kitchen"><h3>Kitchen <code>tec:Kitchen</code></h3><div>Room for preparing food.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="LivingRoom"><h3>Living room <code>tec:LivingRoom</code></h3><div>Main day room of a dwelling.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="On"><h3>on <code>tec:On</code></h3><div>Resting on top of the target.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
+<div class="term" id="Under"><h3>under <code>tec:Under</code></h3><div>Below the target, hidden by it.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
+</main>
+</body>
+</html>

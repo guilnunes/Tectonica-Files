@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tectonica norms</title>
+<style>
+:root { --fg: #1d1f24; --muted: #5b6070; --bg: #ffffff; --line: #e3e5ea; --accent: #9b3d2c; --chip: #f3f1ee; }
+@media (prefers-color-scheme: dark) { :root { --fg: #e8e9ec; --muted: #a3a8b5; --bg: #15171b; --line: #2b2f37; --accent: #e08a6f; --chip: #22252b; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.8rem; margin: 0.2em 0 0.3em; }
+h2 { font-size: 1.25rem; margin-top: 2.2em; border-bottom: 1px solid var(--line); padding-bottom: 0.3em; }
+h3 { font-size: 1.05rem; margin: 1.6em 0 0.2em; }
+a { color: var(--accent); }
+code { background: var(--chip); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.9em; overflow-wrap: anywhere; }
+.muted { color: var(--muted); }
+.term { border-top: 1px solid var(--line); padding: 0.6em 0; }
+.term:target { background: var(--chip); }
+.meta { color: var(--muted); font-size: 0.92em; }
+nav a { margin-right: 1em; }
+ul.index { columns: 2; padding-left: 1.2em; }
+@media (max-width: 560px) { ul.index { columns: 1; } }
+</style>
+</head>
+<body>
+<main>
+<nav><a href="../">Home</a><a href="../core/">Ontology</a><a href="../norms/">Norms</a><a href="https://github.com/guilnunes/tectonica-files">Source</a></nav>
+<h1>Tectonica norms</h1>
+<p class="muted">Version 0.1. IRI <code>https://w3id.org/tectonica/norms</code>. License <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Download: <a href="tectonica-norms.ttl">Turtle (latest)</a>, <a href="0.1/tectonica-norms.ttl">Turtle 0.1</a>.</p>
+<p>Architectural norms as SHACL shapes. Every norm is a warning, never an error, and cites its source. Building code requirements are paraphrased and simplified; they are not a substitute for the codes.</p>
+<h2>Profile <code>convention</code></h2>
+<div class="term" id="CONV-BATH-DOOR"><h3>Bathrooms are entered through a door <code>CONV-BATH-DOOR</code></h3><div class="meta">Kind: <code>tec:DesignConvention</code></div><div class="meta">Source: Common residential practice: privacy</div></div>
+<div class="term" id="CONV-BATH-KITCHEN"><h3>Bathrooms do not open directly onto a kitchen <code>CONV-BATH-KITCHEN</code></h3><div class="meta">Kind: <code>tec:DesignConvention</code></div><div class="meta">Source: Common residential practice: hygiene</div></div>
+<div class="term" id="CONV-BED-DOOR"><h3>Bedrooms are entered through a door <code>CONV-BED-DOOR</code></h3><div class="meta">Kind: <code>tec:DesignConvention</code></div><div class="meta">Source: Common residential practice: privacy</div></div>
+<div class="term" id="CONV-DWELLING-BATHROOM"><h3>A dwelling has a bathroom <code>CONV-DWELLING-BATHROOM</code></h3><div class="meta">Kind: <code>tec:DesignConvention</code></div><div class="meta">Source: Common residential practice</div></div>
+<div class="term" id="CONV-DWELLING-KITCHEN"><h3>A dwelling has a kitchen <code>CONV-DWELLING-KITCHEN</code></h3><div class="meta">Kind: <code>tec:DesignConvention</code></div><div class="meta">Source: Common residential practice</div></div>
+<div class="term" id="CONV-ENTRY-LOCK"><h3>Exterior doors have a lock <code>CONV-ENTRY-LOCK</code></h3><div class="meta">Kind: <code>tec:DesignConvention</code></div><div class="meta">Source: Common residential practice: security</div></div>
+<div class="term" id="CONV-HABITABLE-WINDOW"><h3>Living rooms, bedrooms and kitchens have a window <code>CONV-HABITABLE-WINDOW</code></h3><div class="meta">Kind: <code>tec:DesignConvention</code></div><div class="meta">Source: Common residential practice: daylight and outlook</div></div>
+<h2>Profile <code>england</code></h2>
+<div class="term" id="ENG-ADK-2RG"><h3>Twice the rise plus the going between 550 and 700 mm <code>ENG-ADK-2RG</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: Approved Document K (England), Section 1</div></div>
+<div class="term" id="ENG-ADK-GOING"><h3>Private stair going at least 220 mm <code>ENG-ADK-GOING</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: Approved Document K (England), Section 1, Table 1.1, private stair</div></div>
+<div class="term" id="ENG-ADK-GUARD"><h3>Guards at stairs and landings at least 900 mm high <code>ENG-ADK-GUARD</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: Approved Document K (England), Section 3, guarding in dwellings</div></div>
+<div class="term" id="ENG-ADK-PITCH"><h3>Private stair pitch at most 42 degrees <code>ENG-ADK-PITCH</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: Approved Document K (England), Section 1, Table 1.1, private stair</div></div>
+<div class="term" id="ENG-ADK-RISE"><h3>Private stair rise at most 220 mm <code>ENG-ADK-RISE</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: Approved Document K (England), Section 1, Table 1.1, private stair</div></div>
+<div class="term" id="ENG-NDSS-BEDROOM"><h3>Bedrooms at least 7.5 m2 <code>ENG-NDSS-BEDROOM</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: Technical housing standards: nationally described space standard (2015), section 10, single bedroom</div></div>
+<div class="term" id="ENG-NDSS-HEIGHT"><h3>Habitable rooms at least 2.3 m high <code>ENG-NDSS-HEIGHT</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: Technical housing standards: nationally described space standard (2015), section 10 (2.3 m over at least 75 percent of the gross internal area; checked per room here)</div></div>
+<h2>Profile <code>us-irc</code></h2>
+<div class="term" id="IRC-CEILING"><h3>Habitable rooms at least 7 ft (2.134 m) high <code>IRC-CEILING</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: International Residential Code 2021, R305.1</div></div>
+<div class="term" id="IRC-GUARD"><h3>Guards at least 36 in (914 mm) high <code>IRC-GUARD</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: International Residential Code 2021, R312.1.2</div></div>
+<div class="term" id="IRC-LIGHT"><h3>Habitable rooms glazed for at least 8 percent of their floor area <code>IRC-LIGHT</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: International Residential Code 2021, R303.1 (natural light)</div></div>
+<div class="term" id="IRC-RISER"><h3>Stair riser at most 7 3/4 in (196 mm) <code>IRC-RISER</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: International Residential Code 2021, R311.7.5.1</div></div>
+<div class="term" id="IRC-ROOM-AREA"><h3>Habitable rooms other than kitchens at least 70 sq ft (6.5 m2) <code>IRC-ROOM-AREA</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: International Residential Code 2021, R304.1</div></div>
+<div class="term" id="IRC-TREAD"><h3>Stair tread depth at least 10 in (254 mm) <code>IRC-TREAD</code></h3><div class="meta">Kind: <code>tec:BuildingCode</code></div><div class="meta">Source: International Residential Code 2021, R311.7.5.2</div></div>
+</main>
+</body>
+</html>
