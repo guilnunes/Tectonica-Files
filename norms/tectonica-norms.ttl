@@ -7,8 +7,11 @@
 # norm is a warning, never an error: a brief may deviate on purpose (a ruin,
 # a stage set, a game level). Each norm carries:
 #   tec:normId       stable id, used by briefs to accept a deviation
-#   tec:normProfile  convention | england | us-irc
-#   tec:normKind     tec:DesignConvention | tec:BuildingCode | tec:AccessibilityStandard
+#   tec:normProfile  convention, or one profile per country named by its
+#                    ISO 3166 code: us (United States), br (Brazil),
+#                    gb-eng (England)
+#   tec:normKind     tec:DesignConvention | tec:BuildingCode |
+#                    tec:TechnicalStandard | tec:AccessibilityStandard
 #   tec:normSource   citation; code requirements are paraphrased, not quoted
 #
 # Shapes run over the union of the layer file, the derived topology and the
@@ -175,7 +178,7 @@ tecn:conv-dwelling-bathroom a sh:NodeShape ;
             }""" ] .
 
 #################################################################
-# Profile: england (Building Regulations Approved Documents and the
+# Profile: gb-eng, England (Building Regulations Approved Documents and the
 # Nationally Described Space Standard; Crown copyright, Open Government
 # Licence; requirements paraphrased)
 #################################################################
@@ -183,7 +186,7 @@ tecn:conv-dwelling-bathroom a sh:NodeShape ;
 tecn:eng-adk-rise a sh:NodeShape ;
     rdfs:label "Private stair rise at most 220 mm"@en ;
     tec:normId "ENG-ADK-RISE" ;
-    tec:normProfile "england" ;
+    tec:normProfile "gb-eng" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "Approved Document K (England), Section 1, Table 1.1, private stair" ;
     sh:severity sh:Warning ;
@@ -196,7 +199,7 @@ tecn:eng-adk-rise a sh:NodeShape ;
 tecn:eng-adk-going a sh:NodeShape ;
     rdfs:label "Private stair going at least 220 mm"@en ;
     tec:normId "ENG-ADK-GOING" ;
-    tec:normProfile "england" ;
+    tec:normProfile "gb-eng" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "Approved Document K (England), Section 1, Table 1.1, private stair" ;
     sh:severity sh:Warning ;
@@ -209,7 +212,7 @@ tecn:eng-adk-going a sh:NodeShape ;
 tecn:eng-adk-pitch a sh:NodeShape ;
     rdfs:label "Private stair pitch at most 42 degrees"@en ;
     tec:normId "ENG-ADK-PITCH" ;
-    tec:normProfile "england" ;
+    tec:normProfile "gb-eng" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "Approved Document K (England), Section 1, Table 1.1, private stair" ;
     sh:severity sh:Warning ;
@@ -222,7 +225,7 @@ tecn:eng-adk-pitch a sh:NodeShape ;
 tecn:eng-adk-2rg a sh:NodeShape ;
     rdfs:label "Twice the rise plus the going between 550 and 700 mm"@en ;
     tec:normId "ENG-ADK-2RG" ;
-    tec:normProfile "england" ;
+    tec:normProfile "gb-eng" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "Approved Document K (England), Section 1" ;
     sh:severity sh:Warning ;
@@ -235,7 +238,7 @@ tecn:eng-adk-2rg a sh:NodeShape ;
 tecn:eng-adk-guard a sh:NodeShape ;
     rdfs:label "Guards at stairs and landings at least 900 mm high"@en ;
     tec:normId "ENG-ADK-GUARD" ;
-    tec:normProfile "england" ;
+    tec:normProfile "gb-eng" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "Approved Document K (England), Section 3, guarding in dwellings" ;
     sh:severity sh:Warning ;
@@ -248,7 +251,7 @@ tecn:eng-adk-guard a sh:NodeShape ;
 tecn:eng-ndss-bedroom a sh:NodeShape ;
     rdfs:label "Bedrooms at least 7.5 m2"@en ;
     tec:normId "ENG-NDSS-BEDROOM" ;
-    tec:normProfile "england" ;
+    tec:normProfile "gb-eng" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "Technical housing standards: nationally described space standard (2015), section 10, single bedroom" ;
     sh:severity sh:Warning ;
@@ -267,7 +270,7 @@ tecn:eng-ndss-bedroom a sh:NodeShape ;
 tecn:eng-ndss-height a sh:NodeShape ;
     rdfs:label "Habitable rooms at least 2.3 m high"@en ;
     tec:normId "ENG-NDSS-HEIGHT" ;
-    tec:normProfile "england" ;
+    tec:normProfile "gb-eng" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "Technical housing standards: nationally described space standard (2015), section 10 (2.3 m over at least 75 percent of the gross internal area; checked per room here)" ;
     sh:severity sh:Warning ;
@@ -285,14 +288,16 @@ tecn:eng-ndss-height a sh:NodeShape ;
             }""" ] .
 
 #################################################################
-# Profile: us-irc (International Residential Code 2021; requirements
-# paraphrased, imperial values converted to metres)
+# Profile: us, United States (International Residential Code 2021, the
+# model code most states adopt for one and two family dwellings, often with
+# local amendments; requirements paraphrased, imperial values converted to
+# metres)
 #################################################################
 
 tecn:irc-riser a sh:NodeShape ;
     rdfs:label "Stair riser at most 7 3/4 in (196 mm)"@en ;
     tec:normId "IRC-RISER" ;
-    tec:normProfile "us-irc" ;
+    tec:normProfile "us" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "International Residential Code 2021, R311.7.5.1" ;
     sh:severity sh:Warning ;
@@ -305,7 +310,7 @@ tecn:irc-riser a sh:NodeShape ;
 tecn:irc-tread a sh:NodeShape ;
     rdfs:label "Stair tread depth at least 10 in (254 mm)"@en ;
     tec:normId "IRC-TREAD" ;
-    tec:normProfile "us-irc" ;
+    tec:normProfile "us" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "International Residential Code 2021, R311.7.5.2" ;
     sh:severity sh:Warning ;
@@ -318,7 +323,7 @@ tecn:irc-tread a sh:NodeShape ;
 tecn:irc-guard a sh:NodeShape ;
     rdfs:label "Guards at least 36 in (914 mm) high"@en ;
     tec:normId "IRC-GUARD" ;
-    tec:normProfile "us-irc" ;
+    tec:normProfile "us" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "International Residential Code 2021, R312.1.2" ;
     sh:severity sh:Warning ;
@@ -331,7 +336,7 @@ tecn:irc-guard a sh:NodeShape ;
 tecn:irc-ceiling a sh:NodeShape ;
     rdfs:label "Habitable rooms at least 7 ft (2.134 m) high"@en ;
     tec:normId "IRC-CEILING" ;
-    tec:normProfile "us-irc" ;
+    tec:normProfile "us" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "International Residential Code 2021, R305.1" ;
     sh:severity sh:Warning ;
@@ -351,7 +356,7 @@ tecn:irc-ceiling a sh:NodeShape ;
 tecn:irc-room-area a sh:NodeShape ;
     rdfs:label "Habitable rooms other than kitchens at least 70 sq ft (6.5 m2)"@en ;
     tec:normId "IRC-ROOM-AREA" ;
-    tec:normProfile "us-irc" ;
+    tec:normProfile "us" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "International Residential Code 2021, R304.1" ;
     sh:severity sh:Warning ;
@@ -371,7 +376,7 @@ tecn:irc-room-area a sh:NodeShape ;
 tecn:irc-light a sh:NodeShape ;
     rdfs:label "Habitable rooms glazed for at least 8 percent of their floor area"@en ;
     tec:normId "IRC-LIGHT" ;
-    tec:normProfile "us-irc" ;
+    tec:normProfile "us" ;
     tec:normKind tec:BuildingCode ;
     tec:normSource "International Residential Code 2021, R303.1 (natural light)" ;
     sh:severity sh:Warning ;
@@ -387,3 +392,105 @@ tecn:irc-light a sh:NodeShape ;
                 ?space tec:glazedArea ?g ; tec:floorArea ?a .
                 FILTER (?g < 0.08 * ?a)
             }""" ] .
+
+#################################################################
+# Profile: br, Brazil (national ABNT NBR standards only; requirements
+# paraphrased). Brazil has no national building code: room areas, window
+# ratios and similar rules come from each city's building code (Código de
+# Obras) and are not part of this profile. ABNT standards are binding
+# through the consumer protection code (Lei 8.078/1990, art. 39, VIII).
+# NBR 15575 daylight is set in lux and needs a daylight simulation, so it
+# is not checked yet.
+#################################################################
+
+tecn:br-nbr15575-height a sh:NodeShape ;
+    rdfs:label "Living rooms, bedrooms and kitchens at least 2.50 m high"@en ;
+    tec:normId "BR-NBR15575-HEIGHT" ;
+    tec:normProfile "br" ;
+    tec:normKind tec:TechnicalStandard ;
+    tec:normSource "ABNT NBR 15575-1, Edificações habitacionais: desempenho, minimum ceiling height (pé-direito) of 2.50 m" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "'{?label}' is {?h} m high, below 2.50 m" ;
+        sh:select """
+            SELECT $this ?label ?h WHERE {
+                $this tec:function ?f ; tec:overlays ?space .
+                FILTER (?f IN (tec:LivingRoom, tec:Bedroom, tec:Kitchen))
+                OPTIONAL { $this rdfs:label ?label }
+                ?space tec:clearHeight ?h .
+                FILTER (?h < 2.50)
+            }""" ] .
+
+tecn:br-nbr15575-height-service a sh:NodeShape ;
+    rdfs:label "Halls, corridors and bathrooms at least 2.30 m high"@en ;
+    tec:normId "BR-NBR15575-HEIGHT-SERVICE" ;
+    tec:normProfile "br" ;
+    tec:normKind tec:TechnicalStandard ;
+    tec:normSource "ABNT NBR 15575-1, Edificações habitacionais: desempenho, reduced ceiling height of 2.30 m allowed in halls, corridors, bathrooms and pantries" ;
+    sh:severity sh:Warning ;
+    sh:targetClass tec:Room ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "'{?label}' is {?h} m high, below 2.30 m" ;
+        sh:select """
+            SELECT $this ?label ?h WHERE {
+                $this tec:function ?f ; tec:overlays ?space .
+                FILTER (?f IN (tec:EntranceHall, tec:Circulation, tec:Bathroom))
+                OPTIONAL { $this rdfs:label ?label }
+                ?space tec:clearHeight ?h .
+                FILTER (?h < 2.30)
+            }""" ] .
+
+tecn:br-nbr9050-riser a sh:NodeShape ;
+    rdfs:label "Stair riser between 160 and 180 mm"@en ;
+    tec:normId "BR-NBR9050-RISER" ;
+    tec:normProfile "br" ;
+    tec:normKind tec:AccessibilityStandard ;
+    tec:normSource "ABNT NBR 9050:2020, fixed stairs on accessible routes (required on accessible routes and common areas; a reference inside a private dwelling)" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:riserHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Stair riser {?r} m is outside 0.16 to 0.18 m" ;
+        sh:select """SELECT $this ?r WHERE { $this tec:riserHeight ?r . FILTER (?r < 0.16 || ?r > 0.18) }""" ] .
+
+tecn:br-nbr9050-tread a sh:NodeShape ;
+    rdfs:label "Stair tread between 280 and 320 mm"@en ;
+    tec:normId "BR-NBR9050-TREAD" ;
+    tec:normProfile "br" ;
+    tec:normKind tec:AccessibilityStandard ;
+    tec:normSource "ABNT NBR 9050:2020, fixed stairs on accessible routes (required on accessible routes and common areas; a reference inside a private dwelling)" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:going ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Stair tread {?g} m is outside 0.28 to 0.32 m" ;
+        sh:select """SELECT $this ?g WHERE { $this tec:going ?g . FILTER (?g < 0.28 || ?g > 0.32) }""" ] .
+
+tecn:br-nbr9050-blondel a sh:NodeShape ;
+    rdfs:label "Tread plus twice the riser between 630 and 650 mm"@en ;
+    tec:normId "BR-NBR9050-BLONDEL" ;
+    tec:normProfile "br" ;
+    tec:normKind tec:AccessibilityStandard ;
+    tec:normSource "ABNT NBR 9050:2020, fixed stairs on accessible routes, Blondel rule (required on accessible routes and common areas; a reference inside a private dwelling)" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:riserHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Tread plus twice the riser is outside 0.63 to 0.65 m (riser {?r} m, tread {?g} m)" ;
+        sh:select """SELECT $this ?r ?g WHERE { $this tec:riserHeight ?r ; tec:going ?g . FILTER (?g + 2 * ?r < 0.63 || ?g + 2 * ?r > 0.65) }""" ] .
+
+tecn:br-nbr14718-guard a sh:NodeShape ;
+    rdfs:label "Guards at least 1.10 m high"@en ;
+    tec:normId "BR-NBR14718-GUARD" ;
+    tec:normProfile "br" ;
+    tec:normKind tec:TechnicalStandard ;
+    tec:normSource "ABNT NBR 14718:2019, Guarda-corpos para edificação, protection height of at least 1.10 m (simplified: the lower height allowed above a low wall is not modelled)" ;
+    sh:severity sh:Warning ;
+    sh:targetSubjectsOf tec:guardHeight ;
+    sh:sparql [
+        sh:prefixes tecn: ;
+        sh:message "Guard height {?h} m is below 1.10 m" ;
+        sh:select """SELECT $this ?h WHERE { $this tec:guardHeight ?h . FILTER (?h < 1.10) }""" ] .

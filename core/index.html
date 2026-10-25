@@ -30,7 +30,7 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <h1>Tectonica core ontology</h1>
 <p class="muted">Version 0.1. IRI <code>https://w3id.org/tectonica/core</code>, prefix <code>tec:</code>. License <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Download: <a href="tectonica-core.ttl">Turtle (latest)</a>, <a href="0.1/tectonica-core.ttl">Turtle 0.1</a>.</p>
 <p>An ontology of parts for architecture and the built world. Physical elements form the base layer; rooms and other human definitions are abstractions laid over it; components, containers, material states and provenance are separate logical layers that refer to the same element identifiers.</p>
-<p>48 classes, 68 properties, 14 named individuals. Aligned to <a href="https://w3id.org/bot">BOT</a>; IFC 4.3 class names are given per class.</p>
+<p>48 classes, 68 properties, 15 named individuals. Aligned to <a href="https://w3id.org/bot">BOT</a>; IFC 4.3 class names are given per class.</p>
 <h2>Index</h2><ul class="index">
 <li><a href="#Box">Box</a></li>
 <li><a href="#Building">Building</a></li>
@@ -103,7 +103,7 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <div class="term" id="Mat"><h3>Mat <code>tec:Mat</code></h3><div>A flat textile or fibre object lying on a floor or the ground, such as a doormat. Objects can be placed under it.</div><div class="meta">Subclass of: <a href="#Furnishing"><code>tec:Furnishing</code></a></div><div class="meta">IFC: <code>IfcFurniture</code> PredefinedType <code>USERDEFINED</code> ObjectType <code>MAT</code></div></div>
 <div class="term" id="Material"><h3>Material <code>tec:Material</code></h3><div>A substance elements are made of, with base matter properties: stability, decay rate and resistance.</div><div class="meta">IFC: <code>IfcMaterial</code></div></div>
 <div class="term" id="MaterialState"><h3>Material state <code>tec:MaterialState</code></h3><div>The current condition of the matter of one element: its material and present stability, decay and resistance.</div></div>
-<div class="term" id="NormKind"><h3>Norm kind <code>tec:NormKind</code></h3><div>Where a norm comes from: a design convention, a building code or an accessibility standard.</div></div>
+<div class="term" id="NormKind"><h3>Norm kind <code>tec:NormKind</code></h3><div>Where a norm comes from: a design convention, a building code, a technical standard or an accessibility standard.</div></div>
 <div class="term" id="Opening"><h3>Opening <code>tec:Opening</code></h3><div>A void cut through a host element, placed parametrically on the host. It is not matter; a door or window may fill it, or it may stay open as a passage.</div><div class="meta">Subclass of: <code>bot:Element</code></div><div class="meta">IFC: <code>IfcOpeningElement</code></div></div>
 <div class="term" id="OutdoorArea"><h3>Outdoor area <code>tec:OutdoorArea</code></h3><div>A named outdoor place, such as a front yard, laid over an exterior space.</div><div class="meta">Subclass of: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
 <div class="term" id="PhysicalElement"><h3>Physical element <code>tec:PhysicalElement</code></h3><div>A fixed physical part of the built world with exact parametric geometry, stored on the IFC side.</div><div class="meta">Subclass of: <code>bot:Element</code>, <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div><div class="meta">IFC: <code>IfcElement</code></div></div>
@@ -182,7 +182,7 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <div class="term" id="mountingHeight"><h3>mounting height <code>tec:mountingHeight</code></h3><div>Height of a component above the bottom of its host, in metres.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Component"><code>tec:Component</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
 <div class="term" id="normId"><h3>norm id <code>tec:normId</code></h3><div>Stable identifier of a norm, for example CONV-BATH-DOOR. Briefs use it to accept a deviation.</div><div class="meta">Kind: annotation</div></div>
 <div class="term" id="normKind"><h3>norm kind <code>tec:normKind</code></h3><div>The tec:NormKind of a norm.</div><div class="meta">Kind: annotation</div></div>
-<div class="term" id="normProfile"><h3>norm profile <code>tec:normProfile</code></h3><div>The profile a norm belongs to, for example convention, uk-approved-documents or us-irc. Briefs choose which profiles apply.</div><div class="meta">Kind: annotation</div></div>
+<div class="term" id="normProfile"><h3>norm profile <code>tec:normProfile</code></h3><div>The profile a norm belongs to: convention, or a country code such as us, br or gb-eng. Briefs choose which profiles apply.</div><div class="meta">Kind: annotation</div></div>
 <div class="term" id="normSource"><h3>norm source <code>tec:normSource</code></h3><div>Citation of the document a norm comes from. Requirements are paraphrased, not quoted.</div><div class="meta">Kind: annotation</div></div>
 <div class="term" id="overlays"><h3>overlays <code>tec:overlays</code></h3><div>The physical or spatial element a human abstraction is laid over.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
 <div class="term" id="path"><h3>semantic path <code>tec:path</code></h3><div>The semantic path the GlobalId was derived from, for example poc_house/building/storey-0/wall-south.</div><div class="meta">Kind: datatype</div><div class="meta">Range: <code>xsd:string</code></div></div>
@@ -212,6 +212,7 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <div class="term" id="Kitchen"><h3>Kitchen <code>tec:Kitchen</code></h3><div>Room for preparing food.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
 <div class="term" id="LivingRoom"><h3>Living room <code>tec:LivingRoom</code></h3><div>Main day room of a dwelling.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
 <div class="term" id="On"><h3>on <code>tec:On</code></h3><div>Resting on top of the target.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
+<div class="term" id="TechnicalStandard"><h3>technical standard <code>tec:TechnicalStandard</code></h3><div>A requirement of a national technical standard that is not itself a building code, such as an ABNT NBR standard in Brazil.</div><div class="meta">Type: <a href="#NormKind"><code>tec:NormKind</code></a></div></div>
 <div class="term" id="Under"><h3>under <code>tec:Under</code></h3><div>Below the target, hidden by it.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
 </main>
 </body>

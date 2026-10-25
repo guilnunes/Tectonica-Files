@@ -714,7 +714,7 @@ tec:guardHeight a owl:DatatypeProperty ;
 
 tec:NormKind a owl:Class ;
     rdfs:label "Norm kind"@en ;
-    rdfs:comment "Where a norm comes from: a design convention, a building code or an accessibility standard."@en .
+    rdfs:comment "Where a norm comes from: a design convention, a building code, a technical standard or an accessibility standard."@en .
 
 tec:normId a owl:AnnotationProperty ;
     rdfs:label "norm id"@en ;
@@ -722,7 +722,7 @@ tec:normId a owl:AnnotationProperty ;
 
 tec:normProfile a owl:AnnotationProperty ;
     rdfs:label "norm profile"@en ;
-    rdfs:comment "The profile a norm belongs to, for example convention, uk-approved-documents or us-irc. Briefs choose which profiles apply."@en .
+    rdfs:comment "The profile a norm belongs to: convention, or a country code such as us, br or gb-eng. Briefs choose which profiles apply."@en .
 
 tec:normKind a owl:AnnotationProperty ;
     rdfs:label "norm kind"@en ;
@@ -743,6 +743,10 @@ tec:DesignConvention a owl:NamedIndividual , tec:NormKind ;
 tec:BuildingCode a owl:NamedIndividual , tec:NormKind ;
     rdfs:label "building code"@en ;
     rdfs:comment "A requirement of a building code or regulation of a named jurisdiction."@en .
+
+tec:TechnicalStandard a owl:NamedIndividual , tec:NormKind ;
+    rdfs:label "technical standard"@en ;
+    rdfs:comment "A requirement of a national technical standard that is not itself a building code, such as an ABNT NBR standard in Brazil."@en .
 
 tec:AccessibilityStandard a owl:NamedIndividual , tec:NormKind ;
     rdfs:label "accessibility standard"@en ;
