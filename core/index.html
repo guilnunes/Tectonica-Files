@@ -30,7 +30,7 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <h1>Tectonica core ontology</h1>
 <p class="muted">Version 0.1. IRI <code>https://w3id.org/tectonica/core</code>, prefix <code>tec:</code>. License <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Download: <a href="tectonica-core.ttl">Turtle (latest)</a>, <a href="0.1/tectonica-core.ttl">Turtle 0.1</a>.</p>
 <p>An ontology of parts for architecture and the built world. Physical elements form the base layer; rooms and other human definitions are abstractions laid over it; components, containers, material states and provenance are separate logical layers that refer to the same element identifiers.</p>
-<p>48 classes, 68 properties, 15 named individuals. Aligned to <a href="https://w3id.org/bot">BOT</a>; IFC 4.3 class names are given per class.</p>
+<p>49 classes, 69 properties, 18 named individuals. Aligned to <a href="https://w3id.org/bot">BOT</a>; IFC 4.3 class names are given per class.</p>
 <h2>Index</h2><ul class="index">
 <li><a href="#Box">Box</a></li>
 <li><a href="#Building">Building</a></li>
@@ -41,6 +41,7 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <li><a href="#Curtain">Curtain</a></li>
 <li><a href="#Door">Door</a></li>
 <li><a href="#Dwelling">Dwelling</a></li>
+<li><a href="#ElementRole">Element role</a></li>
 <li><a href="#ExteriorSpace">Exterior space</a></li>
 <li><a href="#Furnishing">Furnishing</a></li>
 <li><a href="#Generator">Generator</a></li>
@@ -90,6 +91,7 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <div class="term" id="Curtain"><h3>Curtain <code>tec:Curtain</code></h3><div>A textile screen attached to a window that can be opened or closed to control light and view.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
 <div class="term" id="Door"><h3>Door <code>tec:Door</code></h3><div>A built element that fills an opening and can be passed through when open.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcDoor</code></div></div>
 <div class="term" id="Dwelling"><h3>Dwelling <code>tec:Dwelling</code></h3><div>A home: a group of rooms used by one household, laid over a building.</div><div class="meta">Subclass of: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="ElementRole"><h3>Element role <code>tec:ElementRole</code></h3><div>What an element&#x27;s geometry stands for: matter, a marker or a zone. Instances are tec:MatterRole, tec:MarkerRole and tec:ZoneRole. Only matter becomes voxels, separates spaces or gives quantities.</div></div>
 <div class="term" id="ExteriorSpace"><h3>Exterior space <code>tec:ExteriorSpace</code></h3><div>The open space of a site outside buildings. It is the &#x27;outside&#x27; node of topology graphs.</div><div class="meta">Subclass of: <a href="#Space"><code>tec:Space</code></a></div><div class="meta">IFC: <code>IfcSpace</code> PredefinedType <code>EXTERNAL</code></div></div>
 <div class="term" id="Furnishing"><h3>Furnishing <code>tec:Furnishing</code></h3><div>A movable but placed physical element such as furniture or a mat (IfcFurnishingElement family).</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcFurniture</code></div></div>
 <div class="term" id="Generator"><h3>Generator <code>tec:Generator</code></h3><div>The program, with its version, that applied rules to a brief.</div><div class="meta">Subclass of: <code>prov:SoftwareAgent</code></div></div>
@@ -143,6 +145,7 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <div class="term" id="decay"><h3>decay <code>tec:decay</code></h3><div>Current decay level in [0, 1]; 0 is pristine, 1 is fully decayed.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#MaterialState"><code>tec:MaterialState</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
 <div class="term" id="decayRate"><h3>decay rate <code>tec:decayRate</code></h3><div>Decay gained per year of full exposure, as a fraction.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Material"><code>tec:Material</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
 <div class="term" id="density"><h3>density <code>tec:density</code></h3><div>Mass density in kilograms per cubic metre.</div><div class="meta">Kind: datatype</div><div class="meta">Domain: <a href="#Material"><code>tec:Material</code></a></div><div class="meta">Range: <code>xsd:double</code></div></div>
+<div class="term" id="elementRole"><h3>element role <code>tec:elementRole</code></h3><div>Role of an element, stated in the layer file so that the IFC file is never edited. When absent the role follows the IFC class: IfcVirtualElement is a zone, IfcAnnotation a marker, every other element matter.</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">Range: <a href="#ElementRole"><code>tec:ElementRole</code></a></div></div>
 <div class="term" id="filledBy"><h3>filled by <code>tec:filledBy</code></h3><div>Inverse of tec:fills.</div><div class="meta">Kind: object</div></div>
 <div class="term" id="fills"><h3>fills <code>tec:fills</code></h3><div>A door or window fills an opening (IfcRelFillsElement).</div><div class="meta">Kind: object</div><div class="meta">Domain: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">Range: <a href="#Opening"><code>tec:Opening</code></a></div></div>
 <div class="term" id="fitsLock"><h3>fits lock <code>tec:fitsLock</code></h3><div>Inverse of tec:requiresKey.</div><div class="meta">Kind: object</div></div>
@@ -211,9 +214,12 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <div class="term" id="Inside"><h3>inside <code>tec:Inside</code></h3><div>Within the target.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
 <div class="term" id="Kitchen"><h3>Kitchen <code>tec:Kitchen</code></h3><div>Room for preparing food.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
 <div class="term" id="LivingRoom"><h3>Living room <code>tec:LivingRoom</code></h3><div>Main day room of a dwelling.</div><div class="meta">Type: <a href="#RoomFunction"><code>tec:RoomFunction</code></a></div></div>
+<div class="term" id="MarkerRole"><h3>marker <code>tec:MarkerRole</code></h3><div>Helper geometry that marks a point or reference, such as a project origin or a geo-reference point. Not matter; hidden in previews.</div><div class="meta">Type: <a href="#ElementRole"><code>tec:ElementRole</code></a></div></div>
+<div class="term" id="MatterRole"><h3>matter <code>tec:MatterRole</code></h3><div>The element is physical matter: it becomes voxels, separates spaces and gives quantities. The default role.</div><div class="meta">Type: <a href="#ElementRole"><code>tec:ElementRole</code></a></div></div>
 <div class="term" id="On"><h3>on <code>tec:On</code></h3><div>Resting on top of the target.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
 <div class="term" id="TechnicalStandard"><h3>technical standard <code>tec:TechnicalStandard</code></h3><div>A requirement of a national technical standard that is not itself a building code, such as an ABNT NBR standard in Brazil.</div><div class="meta">Type: <a href="#NormKind"><code>tec:NormKind</code></a></div></div>
 <div class="term" id="Under"><h3>under <code>tec:Under</code></h3><div>Below the target, hidden by it.</div><div class="meta">Type: <a href="#RelativePosition"><code>tec:RelativePosition</code></a></div></div>
+<div class="term" id="ZoneRole"><h3>zone <code>tec:ZoneRole</code></h3><div>Invisible geometry that defines a zone or a volume, such as a no-build area or a gameplay trigger. Not matter; hidden in previews.</div><div class="meta">Type: <a href="#ElementRole"><code>tec:ElementRole</code></a></div></div>
 </main>
 </body>
 </html>

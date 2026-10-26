@@ -327,6 +327,10 @@ tec:RoomFunction a owl:Class ;
     rdfs:label "Room function"@en ;
     rdfs:comment "What a room is used for. Instances are named individuals such as tec:Kitchen."@en .
 
+tec:ElementRole a owl:Class ;
+    rdfs:label "Element role"@en ;
+    rdfs:comment "What an element's geometry stands for: matter, a marker or a zone. Instances are tec:MatterRole, tec:MarkerRole and tec:ZoneRole. Only matter becomes voxels, separates spaces or gives quantities."@en .
+
 tec:RelativePosition a owl:Class ;
     rdfs:label "Relative position"@en ;
     rdfs:comment "How an object sits relative to the thing it is placed in or on. Instances: tec:On, tec:Under, tec:Inside, tec:Beside."@en .
@@ -453,6 +457,12 @@ tec:function a owl:ObjectProperty ;
     rdfs:range tec:RoomFunction ;
     rdfs:label "function"@en ;
     rdfs:comment "What a room or area is used for."@en .
+
+tec:elementRole a owl:ObjectProperty ;
+    rdfs:domain tec:PhysicalElement ;
+    rdfs:range tec:ElementRole ;
+    rdfs:label "element role"@en ;
+    rdfs:comment "Role of an element, stated in the layer file so that the IFC file is never edited. When absent the role follows the IFC class: IfcVirtualElement is a zone, IfcAnnotation a marker, every other element matter."@en .
 
 tec:material a owl:ObjectProperty ;
     rdfs:range tec:Material ;
@@ -751,6 +761,18 @@ tec:TechnicalStandard a owl:NamedIndividual , tec:NormKind ;
 tec:AccessibilityStandard a owl:NamedIndividual , tec:NormKind ;
     rdfs:label "accessibility standard"@en ;
     rdfs:comment "A requirement of an accessibility standard."@en .
+
+tec:MatterRole a owl:NamedIndividual , tec:ElementRole ;
+    rdfs:label "matter"@en ;
+    rdfs:comment "The element is physical matter: it becomes voxels, separates spaces and gives quantities. The default role."@en .
+
+tec:MarkerRole a owl:NamedIndividual , tec:ElementRole ;
+    rdfs:label "marker"@en ;
+    rdfs:comment "Helper geometry that marks a point or reference, such as a project origin or a geo-reference point. Not matter; hidden in previews."@en .
+
+tec:ZoneRole a owl:NamedIndividual , tec:ElementRole ;
+    rdfs:label "zone"@en ;
+    rdfs:comment "Invisible geometry that defines a zone or a volume, such as a no-build area or a gameplay trigger. Not matter; hidden in previews."@en .
 
 tec:EntranceHall a owl:NamedIndividual , tec:RoomFunction ;
     rdfs:label "Entrance hall"@en ;

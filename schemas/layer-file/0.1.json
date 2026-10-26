@@ -58,7 +58,8 @@
         "type": {"type": "string", "pattern": "^[A-Z][A-Za-z]+$"},
         "path": {"$ref": "#/$defs/path"},
         "label": {"type": "string"},
-        "ifcEntity": {"type": "string", "pattern": "^Ifc[A-Za-z]+$"}
+        "ifcEntity": {"type": "string", "pattern": "^Ifc[A-Za-z]+$"},
+        "role": {"enum": ["MatterRole", "MarkerRole", "ZoneRole"]}
       }
     },
     "material": {

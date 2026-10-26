@@ -42,6 +42,7 @@
     "connects": {"@id": "tec:connects", "@type": "@id"},
     "adjacentTo": {"@id": "tec:adjacentTo", "@type": "@id"},
     "function": {"@id": "tec:function", "@type": "@vocab"},
+    "role": {"@id": "tec:elementRole", "@type": "@vocab"},
     "relativePosition": {"@id": "tec:relativePosition", "@type": "@vocab"},
     "inputs": {"@id": "tec:inputs", "@type": "@json"}
   }
