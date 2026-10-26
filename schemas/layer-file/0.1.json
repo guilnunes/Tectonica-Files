@@ -42,7 +42,8 @@
     "humanAbstractions": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/abstraction"}},
     "passages": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/passage"}},
     "rules": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/rule"}},
-    "provenance": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/provenance"}}
+    "provenance": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/provenance"}},
+    "migrations": {"type": "array", "items": {"$ref": "#/$defs/migration"}}
   },
   "$defs": {
     "guid": {"type": "string", "pattern": "^[0-3][0-9A-Za-z_$]{21}$"},
@@ -150,6 +151,32 @@
         "function": {"type": "string", "pattern": "^[A-Z][A-Za-z]+$"},
         "overlays": {"$ref": "#/$defs/guid"},
         "includes": {"$ref": "#/$defs/guids"}
+      }
+    },
+    "migration": {
+      "description": "One migration of the layer file to an edited IFC file (ADR 0023).",
+      "type": "object",
+      "required": ["id", "type", "label", "fromIfcSha256", "toIfcSha256", "generator", "changes"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/guid"},
+        "type": {"const": "Migration"},
+        "label": {"type": "string"},
+        "fromIfcSha256": {"$ref": "#/$defs/sha256"},
+        "toIfcSha256": {"$ref": "#/$defs/sha256"},
+        "generator": {
+          "type": "object",
+          "required": ["id", "type", "label", "version", "tectonicaVersion"],
+          "additionalProperties": false,
+          "properties": {
+            "id": {"$ref": "#/$defs/guid"},
+            "type": {"const": "Generator"},
+            "label": {"type": "string"},
+            "version": {"type": "string"},
+            "tectonicaVersion": {"type": "string"}
+          }
+        },
+        "changes": {"type": "object"}
       }
     },
     "passage": {
