@@ -327,6 +327,14 @@ tec:RoomFunction a owl:Class ;
     rdfs:label "Room function"@en ;
     rdfs:comment "What a room is used for. Instances are named individuals such as tec:Kitchen."@en .
 
+tec:AssertedPassage a owl:Class ;
+    rdfs:label "Asserted passage"@en ;
+    rdfs:comment "A connection between spaces stated in the layer file, by a rule or a person, where the IFC file has no door, opening or stair that shows it: an open plan boundary, a missing wall, a ladder or a hole in a ruin. Kept apart from passages derived from IFC so the two can be compared. Not matter."@en .
+
+tec:PassageKind a owl:Class ;
+    rdfs:label "Passage kind"@en ;
+    rdfs:comment "Why an asserted passage exists. Instances are tec:OpenBoundary and tec:DeclaredPassage."@en .
+
 tec:ElementRole a owl:Class ;
     rdfs:label "Element role"@en ;
     rdfs:comment "What an element's geometry stands for: matter, a marker or a zone. Instances are tec:MatterRole, tec:MarkerRole and tec:ZoneRole. Only matter becomes voxels, separates spaces or gives quantities."@en .
@@ -407,7 +415,13 @@ tec:filledBy a owl:ObjectProperty ;
 tec:connects a owl:ObjectProperty ;
     rdfs:range tec:SpatialElement ;
     rdfs:label "connects"@en ;
-    rdfs:comment "A passage (door, unfilled opening or stair) lets one move between the spaces it connects. Derived from geometry; an edge of the connectivity graph."@en .
+    rdfs:comment "A passage lets one move between the spaces it connects; an edge of the connectivity graph. Derived from IFC geometry for doors, unfilled openings and stairs; stated in the layer file for a tec:AssertedPassage."@en .
+
+tec:passageKind a owl:ObjectProperty ;
+    rdfs:domain tec:AssertedPassage ;
+    rdfs:range tec:PassageKind ;
+    rdfs:label "passage kind"@en ;
+    rdfs:comment "Why an asserted passage exists: an open boundary found by a rule, or a passage declared by a person or a brief."@en .
 
 tec:requiresKey a owl:ObjectProperty ;
     rdfs:domain tec:Lock ;
@@ -531,6 +545,12 @@ tec:layerHumanAbstractions a owl:ObjectProperty ;
     rdfs:label "layer human abstractions"@en ;
     rdfs:comment "Section of a layer file: rooms, areas and dwellings."@en .
 
+tec:layerPassages a owl:ObjectProperty ;
+    rdfs:domain tec:LayerFile ;
+    rdfs:range tec:AssertedPassage ;
+    rdfs:label "layer passages"@en ;
+    rdfs:comment "Section of a layer file: passages asserted by rules or people, kept apart from the passages derived from IFC."@en .
+
 tec:layerRules a owl:ObjectProperty ;
     rdfs:domain tec:LayerFile ;
     rdfs:range tec:Rule ;
@@ -546,6 +566,12 @@ tec:layerProvenance a owl:ObjectProperty ;
 #################################################################
 # Datatype properties
 #################################################################
+
+tec:opensToOutside a owl:DatatypeProperty ;
+    rdfs:domain tec:AssertedPassage ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "opens to outside"@en ;
+    rdfs:comment "True when an asserted passage connects its one space with the outside of the building."@en .
 
 tec:stability a owl:DatatypeProperty ;
     rdfs:range xsd:double ;
@@ -761,6 +787,14 @@ tec:TechnicalStandard a owl:NamedIndividual , tec:NormKind ;
 tec:AccessibilityStandard a owl:NamedIndividual , tec:NormKind ;
     rdfs:label "accessibility standard"@en ;
     rdfs:comment "A requirement of an accessibility standard."@en .
+
+tec:OpenBoundary a owl:NamedIndividual , tec:PassageKind ;
+    rdfs:label "open boundary"@en ;
+    rdfs:comment "Found by a rule: two spaces, or a space and the outside, meet along a stretch with no wall or other separating element, wide and high enough to walk through."@en .
+
+tec:DeclaredPassage a owl:NamedIndividual , tec:PassageKind ;
+    rdfs:label "declared passage"@en ;
+    rdfs:comment "Stated by a person or a brief, for example a ladder, a hatch or a climbable gap that the IFC file does not model as a passage."@en .
 
 tec:MatterRole a owl:NamedIndividual , tec:ElementRole ;
     rdfs:label "matter"@en ;

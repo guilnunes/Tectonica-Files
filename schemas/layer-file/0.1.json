@@ -40,6 +40,7 @@
     "containers": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/container"}},
     "materialStates": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/materialState"}},
     "humanAbstractions": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/abstraction"}},
+    "passages": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/passage"}},
     "rules": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/rule"}},
     "provenance": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/provenance"}}
   },
@@ -150,6 +151,23 @@
         "overlays": {"$ref": "#/$defs/guid"},
         "includes": {"$ref": "#/$defs/guids"}
       }
+    },
+    "passage": {
+      "description": "An asserted passage (ADR 0022): two spaces, or one space and the outside when opensToOutside is true.",
+      "type": "object",
+      "required": ["type", "path", "label", "passageKind", "connects"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "AssertedPassage"},
+        "path": {"$ref": "#/$defs/path"},
+        "label": {"type": "string"},
+        "passageKind": {"enum": ["OpenBoundary", "DeclaredPassage"]},
+        "connects": {"type": "array", "items": {"$ref": "#/$defs/guid"}, "minItems": 1, "maxItems": 2, "uniqueItems": true},
+        "opensToOutside": {"type": "boolean"}
+      },
+      "if": {"required": ["opensToOutside"], "properties": {"opensToOutside": {"const": true}}},
+      "then": {"properties": {"connects": {"maxItems": 1}}},
+      "else": {"properties": {"connects": {"minItems": 2}}}
     },
     "rule": {
       "type": "object",

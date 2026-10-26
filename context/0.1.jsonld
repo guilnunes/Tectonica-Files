@@ -17,6 +17,7 @@
     "containers": {"@id": "tec:layerContainers", "@container": "@id"},
     "materialStates": {"@id": "tec:layerMaterialStates", "@container": "@id"},
     "humanAbstractions": {"@id": "tec:layerHumanAbstractions", "@container": "@id"},
+    "passages": {"@id": "tec:layerPassages", "@container": "@id"},
     "rules": {"@id": "tec:layerRules", "@container": "@id"},
     "provenance": {"@id": "tec:layerProvenance", "@container": "@id"},
     "generator": {"@id": "tec:generatedBy", "@type": "@id"},
@@ -43,6 +44,7 @@
     "adjacentTo": {"@id": "tec:adjacentTo", "@type": "@id"},
     "function": {"@id": "tec:function", "@type": "@vocab"},
     "role": {"@id": "tec:elementRole", "@type": "@vocab"},
+    "passageKind": {"@id": "tec:passageKind", "@type": "@vocab"},
     "relativePosition": {"@id": "tec:relativePosition", "@type": "@vocab"},
     "inputs": {"@id": "tec:inputs", "@type": "@json"}
   }
