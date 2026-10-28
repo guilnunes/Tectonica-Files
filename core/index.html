@@ -30,112 +30,312 @@ ul.index { columns: 2; padding-left: 1.2em; }
 <h1>Tectonica core ontology</h1>
 <p class="muted">Version 0.1. IRI <code>https://w3id.org/tectonica/core</code>, prefix <code>tec:</code>. License <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Download: <a href="tectonica-core.ttl">Turtle (latest)</a>, <a href="0.1/tectonica-core.ttl">Turtle 0.1</a>.</p>
 <p>An ontology of parts for architecture and the built world. Physical elements form the base layer; rooms and other human definitions are abstractions laid over it; components, containers, material states and provenance are separate logical layers that refer to the same element identifiers.</p>
-<p>53 classes, 88 properties, 20 named individuals. Aligned to <a href="https://w3id.org/bot">BOT</a>; IFC 4.3 class names are given per class.</p>
+<p>153 classes, 88 properties, 20 named individuals. Aligned to <a href="https://w3id.org/bot">BOT</a>; IFC 4.3 class names are given per class.</p>
 <h2>Index</h2><ul class="index">
+<li><a href="#Accessory">Accessory</a></li>
+<li><a href="#AirTerminal">Air terminal</a></li>
+<li><a href="#Alarm">Alarm</a></li>
+<li><a href="#Alignment">Alignment</a></li>
+<li><a href="#AlignmentLayout">Alignment layout</a></li>
+<li><a href="#Annotation">Annotation</a></li>
 <li><a href="#AssertedPassage">Asserted passage</a></li>
+<li><a href="#Beam">Beam</a></li>
+<li><a href="#Bearing">Bearing</a></li>
+<li><a href="#Boiler">Boiler</a></li>
 <li><a href="#Box">Box</a></li>
+<li><a href="#Bridge">Bridge</a></li>
 <li><a href="#Building">Building</a></li>
 <li><a href="#BuiltElement">Built element</a></li>
+<li><a href="#Cable">Cable</a></li>
+<li><a href="#Ceiling">Ceiling</a></li>
+<li><a href="#Chimney">Chimney</a></li>
+<li><a href="#CivilElement">Civil element</a></li>
+<li><a href="#Cladding">Cladding</a></li>
+<li><a href="#Column">Column</a></li>
 <li><a href="#Component">Component</a></li>
+<li><a href="#ConstructionPart">Construction part</a></li>
 <li><a href="#Container">Container</a></li>
+<li><a href="#ControlElement">Control element</a></li>
+<li><a href="#Course">Course</a></li>
+<li><a href="#Covering">Covering</a></li>
 <li><a href="#Curb">Curb</a></li>
 <li><a href="#Curtain">Curtain</a></li>
+<li><a href="#CurtainWall">Curtain wall</a></li>
+<li><a href="#DeepFoundation">Deep foundation</a></li>
+<li><a href="#DistributionBoard">Distribution board</a></li>
+<li><a href="#DistributionChamber">Distribution chamber</a></li>
+<li><a href="#DistributionElement">Distribution element</a></li>
 <li><a href="#Door">Door</a></li>
+<li><a href="#Duct">Duct</a></li>
 <li><a href="#Dwelling">Dwelling</a></li>
+<li><a href="#EarthworksCut">Earthworks cut</a></li>
+<li><a href="#EarthworksElement">Earthworks element</a></li>
+<li><a href="#EarthworksFill">Earthworks fill</a></li>
+<li><a href="#ElectricAppliance">Electric appliance</a></li>
+<li><a href="#ElementAssembly">Element assembly</a></li>
+<li><a href="#ElementPart">Element part</a></li>
 <li><a href="#ElementRole">Element role</a></li>
+<li><a href="#Elevator">Elevator</a></li>
+<li><a href="#EnergyConversionDevice">Energy conversion device</a></li>
+<li><a href="#Escalator">Escalator</a></li>
 <li><a href="#ExteriorSpace">Exterior space</a></li>
+<li><a href="#ExternalArea">External area</a></li>
+<li><a href="#Facility">Facility</a></li>
+<li><a href="#FacilityPart">Facility part</a></li>
+<li><a href="#Fastener">Fastener</a></li>
+<li><a href="#Feature">Feature</a></li>
+<li><a href="#FireSuppressionTerminal">Fire suppression terminal</a></li>
+<li><a href="#Flooring">Flooring</a></li>
+<li><a href="#FlowController">Flow controller</a></li>
+<li><a href="#FlowFitting">Flow fitting</a></li>
+<li><a href="#FlowMovingDevice">Flow moving device</a></li>
+<li><a href="#FlowSegment">Flow segment</a></li>
+<li><a href="#FlowStorageDevice">Flow storage device</a></li>
+<li><a href="#FlowTerminal">Flow terminal</a></li>
+<li><a href="#FlowTreatmentDevice">Flow treatment device</a></li>
+<li><a href="#Footing">Footing</a></li>
 <li><a href="#Furnishing">Furnishing</a></li>
 <li><a href="#Generator">Generator</a></li>
+<li><a href="#GeographicElement">Geographic element</a></li>
+<li><a href="#GeotechnicalElement">Geotechnical element</a></li>
+<li><a href="#Grid">Grid</a></li>
 <li><a href="#Handle">Handle</a></li>
 <li><a href="#Hinge">Hinge</a></li>
 <li><a href="#HumanAbstraction">Human abstraction</a></li>
+<li><a href="#ImpactProtection">Impact protection</a></li>
+<li><a href="#InformationProduct">Information product</a></li>
 <li><a href="#Item">Item</a></li>
 <li><a href="#Key">Key</a></li>
 <li><a href="#LayerFile">Layer file</a></li>
+<li><a href="#LightFixture">Light fixture</a></li>
 <li><a href="#Lock">Lock</a></li>
+<li><a href="#MarineFacility">Marine facility</a></li>
 <li><a href="#Mat">Mat</a></li>
 <li><a href="#Material">Material</a></li>
 <li><a href="#MaterialState">Material state</a></li>
+<li><a href="#MechanicalFastener">Mechanical fastener</a></li>
+<li><a href="#Member">Member</a></li>
 <li><a href="#Migration">Migration</a></li>
+<li><a href="#MooringDevice">Mooring device</a></li>
+<li><a href="#NavigationElement">Navigation element</a></li>
 <li><a href="#NormKind">Norm kind</a></li>
 <li><a href="#Opening">Opening</a></li>
 <li><a href="#OutdoorArea">Outdoor area</a></li>
+<li><a href="#Outlet">Outlet</a></li>
 <li><a href="#PassageKind">Passage kind</a></li>
 <li><a href="#PhysicalElement">Physical element</a></li>
 <li><a href="#PhysicalObject">Physical object</a></li>
+<li><a href="#Pile">Pile</a></li>
+<li><a href="#Pipe">Pipe</a></li>
+<li><a href="#Plate">Plate</a></li>
+<li><a href="#Port">Port</a></li>
 <li><a href="#PortableObject">Portable object</a></li>
+<li><a href="#PositioningElement">Positioning element</a></li>
 <li><a href="#ProvenanceRecord">Provenance record</a></li>
+<li><a href="#Rail">Rail</a></li>
 <li><a href="#Railing">Railing</a></li>
+<li><a href="#Railway">Railway</a></li>
+<li><a href="#Ramp">Ramp</a></li>
+<li><a href="#RampFlight">Ramp flight</a></li>
 <li><a href="#ReferenceFrame">Reference frame</a></li>
+<li><a href="#ReinforcedSoil">Reinforced soil</a></li>
+<li><a href="#Reinforcement">Reinforcement</a></li>
 <li><a href="#RelativePosition">Relative position</a></li>
+<li><a href="#Road">Road</a></li>
 <li><a href="#RoadSurface">Road surface</a></li>
 <li><a href="#Roof">Roof</a></li>
+<li><a href="#RoofCovering">Roof covering</a></li>
 <li><a href="#RoofSlab">Roof slab</a></li>
 <li><a href="#Room">Room</a></li>
 <li><a href="#RoomFunction">Room function</a></li>
 <li><a href="#Rule">Rule</a></li>
+<li><a href="#SanitaryTerminal">Sanitary terminal</a></li>
+<li><a href="#Sensor">Sensor</a></li>
+<li><a href="#ShadingDevice">Shading device</a></li>
+<li><a href="#Sign">Sign</a></li>
+<li><a href="#Signal">Signal</a></li>
 <li><a href="#Site">Site</a></li>
 <li><a href="#Slab">Slab</a></li>
+<li><a href="#SolarDevice">Solar device</a></li>
 <li><a href="#Space">Space</a></li>
+<li><a href="#SpaceHeater">Space heater</a></li>
 <li><a href="#SpatialElement">Spatial element</a></li>
+<li><a href="#SpatialZone">Spatial zone</a></li>
 <li><a href="#Stair">Stair</a></li>
 <li><a href="#StairFlight">Stair flight</a></li>
 <li><a href="#Storey">Storey</a></li>
+<li><a href="#Stratum">Stratum</a></li>
+<li><a href="#StructuralAnalysisItem">Structural analysis item</a></li>
+<li><a href="#StructuralLoad">Structural load</a></li>
+<li><a href="#Switch">Switch</a></li>
+<li><a href="#SystemFurniture">System furniture</a></li>
+<li><a href="#Tank">Tank</a></li>
 <li><a href="#Terrain">Terrain</a></li>
+<li><a href="#TrackElement">Track element</a></li>
+<li><a href="#Transformer">Transformer</a></li>
+<li><a href="#TransportElement">Transport element</a></li>
+<li><a href="#UnclassifiedElement">Unclassified element</a></li>
+<li><a href="#UnclassifiedProduct">Unclassified product</a></li>
+<li><a href="#Valve">Valve</a></li>
+<li><a href="#Vegetation">Vegetation</a></li>
+<li><a href="#Vehicle">Vehicle</a></li>
+<li><a href="#VibrationDamper">Vibration damper</a></li>
+<li><a href="#VibrationIsolator">Vibration isolator</a></li>
+<li><a href="#VirtualElement">Virtual element</a></li>
 <li><a href="#Wall">Wall</a></li>
 <li><a href="#Wardrobe">Wardrobe</a></li>
 <li><a href="#Window">Window</a></li>
 </ul><h2>Classes</h2>
+<div class="term" id="Accessory"><h3>Accessory <code>tec:Accessory</code></h3><div>A small fixed accessory, such as a bracket, a hanger or a shoe.</div><div class="meta">Subclass of: <a href="#ConstructionPart"><code>tec:ConstructionPart</code></a></div><div class="meta">IFC: <code>IfcDiscreteAccessory</code></div></div>
+<div class="term" id="AirTerminal"><h3>Air terminal <code>tec:AirTerminal</code></h3><div>A grille or diffuser where air enters or leaves a space.</div><div class="meta">Subclass of: <a href="#FlowTerminal"><code>tec:FlowTerminal</code></a></div><div class="meta">IFC: <code>IfcAirTerminal</code></div></div>
+<div class="term" id="Alarm"><h3>Alarm <code>tec:Alarm</code></h3><div>A bell, siren or light that warns people.</div><div class="meta">Subclass of: <a href="#ControlElement"><code>tec:ControlElement</code></a></div><div class="meta">IFC: <code>IfcAlarm</code></div></div>
+<div class="term" id="Alignment"><h3>Alignment <code>tec:Alignment</code></h3><div>The centre line of a road, railway or other linear facility, with its horizontal and vertical layout.</div><div class="meta">Subclass of: <a href="#PositioningElement"><code>tec:PositioningElement</code></a></div><div class="meta">IFC: <code>IfcAlignment</code></div></div>
+<div class="term" id="AlignmentLayout"><h3>Alignment layout <code>tec:AlignmentLayout</code></h3><div>A curve an alignment is made of: its horizontal, vertical or cant layout, or one of their segments.</div><div class="meta">Subclass of: <a href="#InformationProduct"><code>tec:InformationProduct</code></a></div><div class="meta">IFC: <code>IfcLinearElement</code></div></div>
+<div class="term" id="Annotation"><h3>Annotation <code>tec:Annotation</code></h3><div>A drawing note, dimension, label or survey mark. Its element role is marker.</div><div class="meta">Subclass of: <a href="#InformationProduct"><code>tec:InformationProduct</code></a></div><div class="meta">IFC: <code>IfcAnnotation</code></div></div>
 <div class="term" id="AssertedPassage"><h3>Asserted passage <code>tec:AssertedPassage</code></h3><div>A connection between spaces stated in the layer file, by a rule or a person, where the IFC file has no door, opening or stair that shows it: an open plan boundary, a missing wall, a ladder or a hole in a ruin. Kept apart from passages derived from IFC so the two can be compared. Not matter.</div></div>
+<div class="term" id="Beam"><h3>Beam <code>tec:Beam</code></h3><div>A mostly horizontal linear element that carries loads across a span to columns or walls.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcBeam</code></div></div>
+<div class="term" id="Bearing"><h3>Bearing <code>tec:Bearing</code></h3><div>A device that passes loads between parts of a structure while letting them move, as between a bridge deck and its piers.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcBearing</code></div></div>
+<div class="term" id="Boiler"><h3>Boiler <code>tec:Boiler</code></h3><div>A boiler that heats water for heating or hot water.</div><div class="meta">Subclass of: <a href="#EnergyConversionDevice"><code>tec:EnergyConversionDevice</code></a></div><div class="meta">IFC: <code>IfcBoiler</code></div></div>
 <div class="term" id="Box"><h3>Box <code>tec:Box</code></h3><div>A rigid container with a lid or open top.</div><div class="meta">Subclass of: <a href="#Container"><code>tec:Container</code></a>, <a href="#Furnishing"><code>tec:Furnishing</code></a></div><div class="meta">IFC: <code>IfcFurniture</code> PredefinedType <code>USERDEFINED</code> ObjectType <code>BOX</code></div></div>
-<div class="term" id="Building"><h3>Building <code>tec:Building</code></h3><div>A structure that provides shelter, located on a site and decomposed into storeys.</div><div class="meta">Subclass of: <code>bot:Building</code>, <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcBuilding</code></div></div>
+<div class="term" id="Bridge"><h3>Bridge <code>tec:Bridge</code></h3><div>A facility that carries a road, railway or path over an obstacle such as a river or a valley.</div><div class="meta">Subclass of: <a href="#Facility"><code>tec:Facility</code></a></div><div class="meta">IFC: <code>IfcBridge</code></div></div>
+<div class="term" id="Building"><h3>Building <code>tec:Building</code></h3><div>A structure that provides shelter, located on a site and decomposed into storeys.</div><div class="meta">Subclass of: <code>bot:Building</code>, <a href="#Facility"><code>tec:Facility</code></a></div><div class="meta">IFC: <code>IfcBuilding</code></div></div>
 <div class="term" id="BuiltElement"><h3>Built element <code>tec:BuiltElement</code></h3><div>A physical element that is part of the construction (IfcBuildingElement in IFC4).</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcBuiltElement</code></div></div>
+<div class="term" id="Cable"><h3>Cable <code>tec:Cable</code></h3><div>A cable that carries power or data.</div><div class="meta">Subclass of: <a href="#FlowSegment"><code>tec:FlowSegment</code></a></div><div class="meta">IFC: <code>IfcCableSegment</code></div></div>
+<div class="term" id="Ceiling"><h3>Ceiling <code>tec:Ceiling</code></h3><div>A covering on the underside of a slab or roof that closes a space at the top.</div><div class="meta">Subclass of: <a href="#Covering"><code>tec:Covering</code></a></div><div class="meta">IFC: <code>IfcCovering</code> PredefinedType <code>CEILING</code></div></div>
+<div class="term" id="Chimney"><h3>Chimney <code>tec:Chimney</code></h3><div>A vertical element that carries smoke or exhaust gases out of a building.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcChimney</code></div></div>
+<div class="term" id="CivilElement"><h3>Civil element <code>tec:CivilElement</code></h3><div>A civil engineering element for which IFC has no more specific class.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcCivilElement</code></div></div>
+<div class="term" id="Cladding"><h3>Cladding <code>tec:Cladding</code></h3><div>An outer layer on a wall that protects it from the weather and gives the facade its look.</div><div class="meta">Subclass of: <a href="#Covering"><code>tec:Covering</code></a></div><div class="meta">IFC: <code>IfcCovering</code> PredefinedType <code>CLADDING</code></div></div>
+<div class="term" id="Column"><h3>Column <code>tec:Column</code></h3><div>A mostly vertical linear element that carries loads down towards the foundation.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcColumn</code></div></div>
 <div class="term" id="Component"><h3>Component <code>tec:Component</code></h3><div>A module that realises a human concept (access control, operation, shading) as a part of a host element. Stored on the layer side and attached to the host by its GlobalId.</div><div class="meta">Subclass of: <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div></div>
+<div class="term" id="ConstructionPart"><h3>Construction part <code>tec:ConstructionPart</code></h3><div>A small physical part of a built element: a fastener, an accessory, reinforcement, a sign. Not to be confused with tec:Component, a human concept such as a lock, kept on the layer side.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcElementComponent</code></div></div>
 <div class="term" id="Container"><h3>Container <code>tec:Container</code></h3><div>An object that holds contents, related to them by tec:contains.</div><div class="meta">Subclass of: <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div></div>
+<div class="term" id="ControlElement"><h3>Control element <code>tec:ControlElement</code></h3><div>A sensor, alarm, actuator or controller of services.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcDistributionControlElement</code></div></div>
+<div class="term" id="Course"><h3>Course <code>tec:Course</code></h3><div>A layer of a built-up construction, such as a pavement layer, a railway ballast bed or a breakwater armour layer.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcCourse</code></div></div>
+<div class="term" id="Covering"><h3>Covering <code>tec:Covering</code></h3><div>A finish or layer applied to another element: flooring, ceiling, cladding, roofing, insulation or skirting.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcCovering</code></div></div>
 <div class="term" id="Curb"><h3>Curb <code>tec:Curb</code></h3><div>A raised edge between a road surface and a sidewalk or verge. IFC 4.3 entity (IfcKerb); no IFC4 equivalent.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcKerb</code></div></div>
 <div class="term" id="Curtain"><h3>Curtain <code>tec:Curtain</code></h3><div>A textile screen attached to a window that can be opened or closed to control light and view.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
+<div class="term" id="CurtainWall"><h3>Curtain wall <code>tec:CurtainWall</code></h3><div>An outer wall that carries no floor loads and hangs on the structure, usually a frame of members filled with glass or panels.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcCurtainWall</code></div></div>
+<div class="term" id="DeepFoundation"><h3>Deep foundation <code>tec:DeepFoundation</code></h3><div>A foundation that carries loads deep into the ground, such as a pile or a caisson.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcDeepFoundation</code></div></div>
+<div class="term" id="DistributionBoard"><h3>Distribution board <code>tec:DistributionBoard</code></h3><div>A panel that splits a power or data supply into circuits, with its breakers or switches.</div><div class="meta">Subclass of: <a href="#FlowController"><code>tec:FlowController</code></a></div><div class="meta">IFC: <code>IfcDistributionBoard</code></div></div>
+<div class="term" id="DistributionChamber"><h3>Distribution chamber <code>tec:DistributionChamber</code></h3><div>A manhole, inspection chamber, trench or duct bank that houses services and gives access to them.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcDistributionChamberElement</code></div></div>
+<div class="term" id="DistributionElement"><h3>Distribution element <code>tec:DistributionElement</code></h3><div>A part of the services of a building or a city: water, drainage, gas, heating, ventilation, power, lighting or data.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcDistributionElement</code></div></div>
 <div class="term" id="Door"><h3>Door <code>tec:Door</code></h3><div>A built element that fills an opening and can be passed through when open.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcDoor</code></div></div>
+<div class="term" id="Duct"><h3>Duct <code>tec:Duct</code></h3><div>A duct that carries air.</div><div class="meta">Subclass of: <a href="#FlowSegment"><code>tec:FlowSegment</code></a></div><div class="meta">IFC: <code>IfcDuctSegment</code></div></div>
 <div class="term" id="Dwelling"><h3>Dwelling <code>tec:Dwelling</code></h3><div>A home: a group of rooms used by one household, laid over a building.</div><div class="meta">Subclass of: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="EarthworksCut"><h3>Earthworks cut <code>tec:EarthworksCut</code></h3><div>A volume of ground removed by excavation, such as a trench or a cutting. Like an opening, it is a void.</div><div class="meta">Subclass of: <a href="#Feature"><code>tec:Feature</code></a></div><div class="meta">IFC: <code>IfcEarthworksCut</code></div></div>
+<div class="term" id="EarthworksElement"><h3>Earthworks element <code>tec:EarthworksElement</code></h3><div>A body of soil or rock placed as part of a construction.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcEarthworksElement</code></div></div>
+<div class="term" id="EarthworksFill"><h3>Earthworks fill <code>tec:EarthworksFill</code></h3><div>Soil, sand or other bulk material placed to raise or level the ground, such as an embankment or the bedding under a floor slab.</div><div class="meta">Subclass of: <a href="#EarthworksElement"><code>tec:EarthworksElement</code></a></div><div class="meta">IFC: <code>IfcEarthworksFill</code></div></div>
+<div class="term" id="ElectricAppliance"><h3>Electric appliance <code>tec:ElectricAppliance</code></h3><div>An appliance connected to power, such as a refrigerator, cooker or washing machine.</div><div class="meta">Subclass of: <a href="#FlowTerminal"><code>tec:FlowTerminal</code></a></div><div class="meta">IFC: <code>IfcElectricAppliance</code></div></div>
+<div class="term" id="ElementAssembly"><h3>Element assembly <code>tec:ElementAssembly</code></h3><div>A group of elements made or delivered as one unit, such as a truss, a prefabricated stair or a frame.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcElementAssembly</code></div></div>
+<div class="term" id="ElementPart"><h3>Element part <code>tec:ElementPart</code></h3><div>A piece of a built element modelled on its own, such as one layer of a wall.</div><div class="meta">Subclass of: <a href="#ConstructionPart"><code>tec:ConstructionPart</code></a></div><div class="meta">IFC: <code>IfcBuildingElementPart</code></div></div>
 <div class="term" id="ElementRole"><h3>Element role <code>tec:ElementRole</code></h3><div>What an element&#x27;s geometry stands for: matter, a marker or a zone. Instances are tec:MatterRole, tec:MarkerRole and tec:ZoneRole. Only matter becomes voxels, separates spaces or gives quantities.</div></div>
+<div class="term" id="Elevator"><h3>Elevator <code>tec:Elevator</code></h3><div>A car that carries people or goods vertically between levels.</div><div class="meta">Subclass of: <a href="#TransportElement"><code>tec:TransportElement</code></a></div><div class="meta">IFC: <code>IfcTransportElement</code> PredefinedType <code>ELEVATOR</code></div></div>
+<div class="term" id="EnergyConversionDevice"><h3>Energy conversion device <code>tec:EnergyConversionDevice</code></h3><div>A boiler, chiller, heat pump, transformer, generator or solar panel.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcEnergyConversionDevice</code></div></div>
+<div class="term" id="Escalator"><h3>Escalator <code>tec:Escalator</code></h3><div>A moving stair that carries people between levels.</div><div class="meta">Subclass of: <a href="#TransportElement"><code>tec:TransportElement</code></a></div><div class="meta">IFC: <code>IfcTransportElement</code> PredefinedType <code>ESCALATOR</code></div></div>
 <div class="term" id="ExteriorSpace"><h3>Exterior space <code>tec:ExteriorSpace</code></h3><div>The open space of a site outside buildings. It is the &#x27;outside&#x27; node of topology graphs.</div><div class="meta">Subclass of: <a href="#Space"><code>tec:Space</code></a></div><div class="meta">IFC: <code>IfcSpace</code> PredefinedType <code>EXTERNAL</code></div></div>
-<div class="term" id="Furnishing"><h3>Furnishing <code>tec:Furnishing</code></h3><div>A movable but placed physical element such as furniture or a mat (IfcFurnishingElement family).</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcFurniture</code></div></div>
+<div class="term" id="ExternalArea"><h3>External area <code>tec:ExternalArea</code></h3><div>An outside part of a site defined by its extent, such as a garden, a yard or a parking area.</div><div class="meta">Subclass of: <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcExternalSpatialElement</code></div></div>
+<div class="term" id="Facility"><h3>Facility <code>tec:Facility</code></h3><div>A built work as a whole, such as a building, bridge, road, railway or port, decomposed into parts or storeys. IFC 4.3 entity; IFC4 knows only IfcBuilding.</div><div class="meta">Subclass of: <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcFacility</code></div></div>
+<div class="term" id="FacilityPart"><h3>Facility part <code>tec:FacilityPart</code></h3><div>A spatial part of a facility, such as a road segment, a bridge span or a section of railway track.</div><div class="meta">Subclass of: <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcFacilityPart</code></div></div>
+<div class="term" id="Fastener"><h3>Fastener <code>tec:Fastener</code></h3><div>A screw, bolt, nail, weld or glue joint that holds parts together.</div><div class="meta">Subclass of: <a href="#ConstructionPart"><code>tec:ConstructionPart</code></a></div><div class="meta">IFC: <code>IfcFastener</code></div></div>
+<div class="term" id="Feature"><h3>Feature <code>tec:Feature</code></h3><div>A change to another element&#x27;s shape rather than an element of its own: an opening, a recess, a projection, a cut in the ground. It is not matter.</div><div class="meta">Subclass of: <code>bot:Element</code></div><div class="meta">IFC: <code>IfcFeatureElement</code></div></div>
+<div class="term" id="FireSuppressionTerminal"><h3>Fire suppression terminal <code>tec:FireSuppressionTerminal</code></h3><div>A sprinkler, hydrant or hose reel.</div><div class="meta">Subclass of: <a href="#FlowTerminal"><code>tec:FlowTerminal</code></a></div><div class="meta">IFC: <code>IfcFireSuppressionTerminal</code></div></div>
+<div class="term" id="Flooring"><h3>Flooring <code>tec:Flooring</code></h3><div>The walking surface laid on a floor slab, such as tiles, boards or carpet.</div><div class="meta">Subclass of: <a href="#Covering"><code>tec:Covering</code></a></div><div class="meta">IFC: <code>IfcCovering</code> PredefinedType <code>FLOORING</code></div></div>
+<div class="term" id="FlowController"><h3>Flow controller <code>tec:FlowController</code></h3><div>A device that regulates or switches a flow: a valve, damper, switch, meter or distribution board.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcFlowController</code></div></div>
+<div class="term" id="FlowFitting"><h3>Flow fitting <code>tec:FlowFitting</code></h3><div>A bend, tee, junction box or other connector between flow segments.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcFlowFitting</code></div></div>
+<div class="term" id="FlowMovingDevice"><h3>Flow moving device <code>tec:FlowMovingDevice</code></h3><div>A pump, fan or compressor that moves a flow.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcFlowMovingDevice</code></div></div>
+<div class="term" id="FlowSegment"><h3>Flow segment <code>tec:FlowSegment</code></h3><div>A run of pipe, duct, cable or cable tray that carries a flow.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcFlowSegment</code></div></div>
+<div class="term" id="FlowStorageDevice"><h3>Flow storage device <code>tec:FlowStorageDevice</code></h3><div>A tank, cistern or battery that stores what flows.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcFlowStorageDevice</code></div></div>
+<div class="term" id="FlowTerminal"><h3>Flow terminal <code>tec:FlowTerminal</code></h3><div>A device where a flow ends or is used: a tap, toilet, light, socket or air outlet.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcFlowTerminal</code></div></div>
+<div class="term" id="FlowTreatmentDevice"><h3>Flow treatment device <code>tec:FlowTreatmentDevice</code></h3><div>A filter, grease interceptor or silencer that treats a flow.</div><div class="meta">Subclass of: <a href="#DistributionElement"><code>tec:DistributionElement</code></a></div><div class="meta">IFC: <code>IfcFlowTreatmentDevice</code></div></div>
+<div class="term" id="Footing"><h3>Footing <code>tec:Footing</code></h3><div>A shallow foundation that spreads the load of a wall or column into the ground.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcFooting</code></div></div>
+<div class="term" id="Furnishing"><h3>Furnishing <code>tec:Furnishing</code></h3><div>A movable but placed physical element such as furniture or a mat (IfcFurnishingElement family).</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcFurnishingElement</code></div></div>
 <div class="term" id="Generator"><h3>Generator <code>tec:Generator</code></h3><div>The program, with its version, that applied rules to a brief.</div><div class="meta">Subclass of: <code>prov:SoftwareAgent</code></div></div>
+<div class="term" id="GeographicElement"><h3>Geographic element <code>tec:GeographicElement</code></h3><div>A natural or landscape element of a site, such as terrain or vegetation.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcGeographicElement</code></div></div>
+<div class="term" id="GeotechnicalElement"><h3>Geotechnical element <code>tec:GeotechnicalElement</code></h3><div>The ground below the surface as known from investigation: soil and rock layers, boreholes, ground models.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcGeotechnicalElement</code></div></div>
+<div class="term" id="Grid"><h3>Grid <code>tec:Grid</code></h3><div>A set of grid lines that columns and walls are set out on.</div><div class="meta">Subclass of: <a href="#PositioningElement"><code>tec:PositioningElement</code></a></div><div class="meta">IFC: <code>IfcGrid</code></div></div>
 <div class="term" id="Handle"><h3>Handle <code>tec:Handle</code></h3><div>A grip used to operate a door, window or container.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
 <div class="term" id="Hinge"><h3>Hinge <code>tec:Hinge</code></h3><div>A pivot joint on which a door, window or lid turns.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
 <div class="term" id="HumanAbstraction"><h3>Human abstraction <code>tec:HumanAbstraction</code></h3><div>A human made definition laid over the physical base layer (rooms, dwellings, zoning). It refers to physical or spatial elements and never replaces them.</div></div>
+<div class="term" id="ImpactProtection"><h3>Impact protection <code>tec:ImpactProtection</code></h3><div>A crash barrier, bumper or other device that absorbs impacts.</div><div class="meta">Subclass of: <a href="#ConstructionPart"><code>tec:ConstructionPart</code></a></div><div class="meta">IFC: <code>IfcImpactProtectionDevice</code></div></div>
+<div class="term" id="InformationProduct"><h3>Information product <code>tec:InformationProduct</code></h3><div>A product of an IFC model that describes or positions the built world rather than being part of it: annotations, grids and alignments, connection ports, structural analysis models. Every IFC product gets a layer entry, so these have classes too, but they are never matter.</div><div class="meta">Subclass of: <code>http://www.w3.org/2002/07/owl#Thing</code></div></div>
 <div class="term" id="Item"><h3>Item <code>tec:Item</code></h3><div>A portable object that can be held in a container, for example clothing or a book.</div><div class="meta">Subclass of: <a href="#PortableObject"><code>tec:PortableObject</code></a></div></div>
 <div class="term" id="Key"><h3>Key <code>tec:Key</code></h3><div>A portable component that operates one or more locks.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a>, <a href="#PortableObject"><code>tec:PortableObject</code></a></div></div>
 <div class="term" id="LayerFile"><h3>Layer file <code>tec:LayerFile</code></h3><div>A JSON-LD document holding the non geometric layers of a model, linked to an IFC file by GlobalIds.</div><div class="meta">Subclass of: <code>prov:Entity</code></div></div>
+<div class="term" id="LightFixture"><h3>Light fixture <code>tec:LightFixture</code></h3><div>A light fitting, indoors or in a street.</div><div class="meta">Subclass of: <a href="#FlowTerminal"><code>tec:FlowTerminal</code></a></div><div class="meta">IFC: <code>IfcLightFixture</code></div></div>
 <div class="term" id="Lock"><h3>Lock <code>tec:Lock</code></h3><div>A mechanism that keeps its host (usually a door) shut until operated with the key it requires.</div><div class="meta">Subclass of: <a href="#Component"><code>tec:Component</code></a></div></div>
+<div class="term" id="MarineFacility"><h3>Marine facility <code>tec:MarineFacility</code></h3><div>A port, quay, breakwater, canal or other facility at the water.</div><div class="meta">Subclass of: <a href="#Facility"><code>tec:Facility</code></a></div><div class="meta">IFC: <code>IfcMarineFacility</code></div></div>
 <div class="term" id="Mat"><h3>Mat <code>tec:Mat</code></h3><div>A flat textile or fibre object lying on a floor or the ground, such as a doormat. Objects can be placed under it.</div><div class="meta">Subclass of: <a href="#Furnishing"><code>tec:Furnishing</code></a></div><div class="meta">IFC: <code>IfcFurniture</code> PredefinedType <code>USERDEFINED</code> ObjectType <code>MAT</code></div></div>
 <div class="term" id="Material"><h3>Material <code>tec:Material</code></h3><div>A substance elements are made of, with base matter properties: stability, decay rate and resistance.</div><div class="meta">IFC: <code>IfcMaterial</code></div></div>
 <div class="term" id="MaterialState"><h3>Material state <code>tec:MaterialState</code></h3><div>The current condition of the matter of one element: its material and present stability, decay and resistance.</div></div>
+<div class="term" id="MechanicalFastener"><h3>Mechanical fastener <code>tec:MechanicalFastener</code></h3><div>A bolt, screw, nail or anchor.</div><div class="meta">Subclass of: <a href="#Fastener"><code>tec:Fastener</code></a></div><div class="meta">IFC: <code>IfcMechanicalFastener</code></div></div>
+<div class="term" id="Member"><h3>Member <code>tec:Member</code></h3><div>A linear element that is neither a beam nor a column: a brace, strut, rafter, purlin or mullion.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcMember</code></div></div>
 <div class="term" id="Migration"><h3>Migration <code>tec:Migration</code></h3><div>One update of a layer file to an edited IFC file: which IFC file it moved from and to, and which elements were added, reclassified or dropped (ADR 0023).</div><div class="meta">Subclass of: <code>prov:Activity</code></div></div>
+<div class="term" id="MooringDevice"><h3>Mooring device <code>tec:MooringDevice</code></h3><div>A bollard, fender or other device used to moor vessels.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcMooringDevice</code></div></div>
+<div class="term" id="NavigationElement"><h3>Navigation element <code>tec:NavigationElement</code></h3><div>A beacon, buoy or other aid to navigation on water.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcNavigationElement</code></div></div>
 <div class="term" id="NormKind"><h3>Norm kind <code>tec:NormKind</code></h3><div>Where a norm comes from: a design convention, a building code, a technical standard or an accessibility standard.</div></div>
-<div class="term" id="Opening"><h3>Opening <code>tec:Opening</code></h3><div>A void cut through a host element, placed parametrically on the host. It is not matter; a door or window may fill it, or it may stay open as a passage.</div><div class="meta">Subclass of: <code>bot:Element</code></div><div class="meta">IFC: <code>IfcOpeningElement</code></div></div>
+<div class="term" id="Opening"><h3>Opening <code>tec:Opening</code></h3><div>A void cut through a host element, placed parametrically on the host. It is not matter; a door or window may fill it, or it may stay open as a passage.</div><div class="meta">Subclass of: <a href="#Feature"><code>tec:Feature</code></a></div><div class="meta">IFC: <code>IfcOpeningElement</code></div></div>
 <div class="term" id="OutdoorArea"><h3>Outdoor area <code>tec:OutdoorArea</code></h3><div>A named outdoor place, such as a front yard, laid over an exterior space.</div><div class="meta">Subclass of: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
+<div class="term" id="Outlet"><h3>Outlet <code>tec:Outlet</code></h3><div>A socket for power or data.</div><div class="meta">Subclass of: <a href="#FlowTerminal"><code>tec:FlowTerminal</code></a></div><div class="meta">IFC: <code>IfcOutlet</code></div></div>
 <div class="term" id="PassageKind"><h3>Passage kind <code>tec:PassageKind</code></h3><div>Why an asserted passage exists. Instances are tec:OpenBoundary and tec:DeclaredPassage.</div></div>
 <div class="term" id="PhysicalElement"><h3>Physical element <code>tec:PhysicalElement</code></h3><div>A fixed physical part of the built world with exact parametric geometry, stored on the IFC side.</div><div class="meta">Subclass of: <code>bot:Element</code>, <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div><div class="meta">IFC: <code>IfcElement</code></div></div>
 <div class="term" id="PhysicalObject"><h3>Physical object <code>tec:PhysicalObject</code></h3><div>Anything made of matter: fixed elements of the built world and portable objects.</div></div>
+<div class="term" id="Pile"><h3>Pile <code>tec:Pile</code></h3><div>A slender deep foundation driven or cast into the ground.</div><div class="meta">Subclass of: <a href="#DeepFoundation"><code>tec:DeepFoundation</code></a></div><div class="meta">IFC: <code>IfcPile</code></div></div>
+<div class="term" id="Pipe"><h3>Pipe <code>tec:Pipe</code></h3><div>A pipe that carries water, gas, sewage or another fluid.</div><div class="meta">Subclass of: <a href="#FlowSegment"><code>tec:FlowSegment</code></a></div><div class="meta">IFC: <code>IfcPipeSegment</code></div></div>
+<div class="term" id="Plate"><h3>Plate <code>tec:Plate</code></h3><div>A thin planar element, such as a glass pane in a curtain wall or a steel sheet.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcPlate</code></div></div>
+<div class="term" id="Port"><h3>Port <code>tec:Port</code></h3><div>A connection point of a services element, where a pipe, duct or cable attaches.</div><div class="meta">Subclass of: <a href="#InformationProduct"><code>tec:InformationProduct</code></a></div><div class="meta">IFC: <code>IfcPort</code></div></div>
 <div class="term" id="PortableObject"><h3>Portable object <code>tec:PortableObject</code></h3><div>A physical object that is carried rather than placed, with no own geometry at the current level of detail; stored on the layer side only.</div><div class="meta">Subclass of: <a href="#PhysicalObject"><code>tec:PhysicalObject</code></a></div></div>
+<div class="term" id="PositioningElement"><h3>Positioning element <code>tec:PositioningElement</code></h3><div>Geometry used to place other things: a grid, an alignment, a reference point along a road.</div><div class="meta">Subclass of: <a href="#InformationProduct"><code>tec:InformationProduct</code></a></div><div class="meta">IFC: <code>IfcPositioningElement</code></div></div>
 <div class="term" id="ProvenanceRecord"><h3>Provenance record <code>tec:ProvenanceRecord</code></h3><div>The record of one generation step: which rule, with which inputs and which generator, produced an element or record.</div><div class="meta">Subclass of: <code>prov:Activity</code></div></div>
+<div class="term" id="Rail"><h3>Rail <code>tec:Rail</code></h3><div>A rail of a railway or tram track.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcRail</code></div></div>
 <div class="term" id="Railing"><h3>Railing <code>tec:Railing</code></h3><div>A guard or handrail along an edge, such as a stairwell or a stair flight.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcRailing</code></div></div>
+<div class="term" id="Railway"><h3>Railway <code>tec:Railway</code></h3><div>A facility for rail traffic as a spatial whole, decomposed into railway parts.</div><div class="meta">Subclass of: <a href="#Facility"><code>tec:Facility</code></a></div><div class="meta">IFC: <code>IfcRailway</code></div></div>
+<div class="term" id="Ramp"><h3>Ramp <code>tec:Ramp</code></h3><div>An inclined surface that connects levels for walking, wheelchairs or vehicles, made of ramp flights and landings.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcRamp</code></div></div>
+<div class="term" id="RampFlight"><h3>Ramp flight <code>tec:RampFlight</code></h3><div>An uninterrupted inclined run, part of a ramp.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcRampFlight</code></div></div>
 <div class="term" id="ReferenceFrame"><h3>Reference frame <code>tec:ReferenceFrame</code></h3><div>Layer L0: where a model&#x27;s local coordinates (metres, Z up) sit in the world, as a coordinate reference system and a map conversion (origin, rotation, scale), the same parameters as IFC&#x27;s IfcMapConversion. Stated in the layer file only when the IFC file has no georeference or a wrong one (ADR 0024).</div></div>
+<div class="term" id="ReinforcedSoil"><h3>Reinforced soil <code>tec:ReinforcedSoil</code></h3><div>Soil strengthened with layers of reinforcement, as in a retaining embankment.</div><div class="meta">Subclass of: <a href="#EarthworksElement"><code>tec:EarthworksElement</code></a></div><div class="meta">IFC: <code>IfcReinforcedSoil</code></div></div>
+<div class="term" id="Reinforcement"><h3>Reinforcement <code>tec:Reinforcement</code></h3><div>Steel bars, meshes or tendons inside concrete.</div><div class="meta">Subclass of: <a href="#ConstructionPart"><code>tec:ConstructionPart</code></a></div><div class="meta">IFC: <code>IfcReinforcingElement</code></div></div>
 <div class="term" id="RelativePosition"><h3>Relative position <code>tec:RelativePosition</code></h3><div>How an object sits relative to the thing it is placed in or on. Instances: tec:On, tec:Under, tec:Inside, tec:Beside.</div></div>
+<div class="term" id="Road"><h3>Road <code>tec:Road</code></h3><div>A facility for road traffic as a spatial whole, decomposed into road parts. The paved surface itself is a tec:RoadSurface element.</div><div class="meta">Subclass of: <a href="#Facility"><code>tec:Facility</code></a></div><div class="meta">IFC: <code>IfcRoad</code></div></div>
 <div class="term" id="RoadSurface"><h3>Road surface <code>tec:RoadSurface</code></h3><div>The physical paved surface of a road or path: length, width, elevation, material, curvature. Lanes and traffic are a separate movement layer. IFC 4.3 entity; no direct IFC4 equivalent (IfcSlab is used there).</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcPavement</code></div></div>
 <div class="term" id="Roof"><h3>Roof <code>tec:Roof</code></h3><div>The covering of the top of a building, usually an aggregate of roof slabs.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcRoof</code></div></div>
+<div class="term" id="RoofCovering"><h3>Roof covering <code>tec:RoofCovering</code></h3><div>The weatherproof outer layer of a roof, such as tiles, sheets or a membrane.</div><div class="meta">Subclass of: <a href="#Covering"><code>tec:Covering</code></a></div><div class="meta">IFC: <code>IfcCovering</code> PredefinedType <code>ROOFING</code></div></div>
 <div class="term" id="RoofSlab"><h3>Roof slab <code>tec:RoofSlab</code></h3><div>A slab that forms a plane of a roof; part of a tec:Roof.</div><div class="meta">Subclass of: <a href="#Slab"><code>tec:Slab</code></a></div><div class="meta">IFC: <code>IfcSlab</code> PredefinedType <code>ROOF</code></div></div>
 <div class="term" id="Room"><h3>Room <code>tec:Room</code></h3><div>A named place with a function, laid over a space.</div><div class="meta">Subclass of: <a href="#HumanAbstraction"><code>tec:HumanAbstraction</code></a></div></div>
 <div class="term" id="RoomFunction"><h3>Room function <code>tec:RoomFunction</code></h3><div>What a room is used for. Instances are named individuals such as tec:Kitchen.</div></div>
 <div class="term" id="Rule"><h3>Rule <code>tec:Rule</code></h3><div>A named, versioned, deterministic piece of generator logic.</div><div class="meta">Subclass of: <code>prov:Plan</code></div></div>
+<div class="term" id="SanitaryTerminal"><h3>Sanitary terminal <code>tec:SanitaryTerminal</code></h3><div>A toilet, washbasin, sink, bath or shower.</div><div class="meta">Subclass of: <a href="#FlowTerminal"><code>tec:FlowTerminal</code></a></div><div class="meta">IFC: <code>IfcSanitaryTerminal</code></div></div>
+<div class="term" id="Sensor"><h3>Sensor <code>tec:Sensor</code></h3><div>A device that measures something, such as temperature, smoke or movement.</div><div class="meta">Subclass of: <a href="#ControlElement"><code>tec:ControlElement</code></a></div><div class="meta">IFC: <code>IfcSensor</code></div></div>
+<div class="term" id="ShadingDevice"><h3>Shading device <code>tec:ShadingDevice</code></h3><div>A fixed or movable element that shades windows or facades: louvres, awnings, shutters.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcShadingDevice</code></div></div>
+<div class="term" id="Sign"><h3>Sign <code>tec:Sign</code></h3><div>A sign with text or symbols, such as a road sign or a room sign.</div><div class="meta">Subclass of: <a href="#ConstructionPart"><code>tec:ConstructionPart</code></a></div><div class="meta">IFC: <code>IfcSign</code></div></div>
+<div class="term" id="Signal"><h3>Signal <code>tec:Signal</code></h3><div>A traffic light, railway signal or other signalling light.</div><div class="meta">Subclass of: <a href="#FlowTerminal"><code>tec:FlowTerminal</code></a></div><div class="meta">IFC: <code>IfcSignal</code></div></div>
 <div class="term" id="Site"><h3>Site <code>tec:Site</code></h3><div>A piece of land with its built and unbuilt parts; the root of the spatial structure of a project.</div><div class="meta">Subclass of: <code>bot:Site</code>, <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcSite</code></div></div>
 <div class="term" id="Slab"><h3>Slab <code>tec:Slab</code></h3><div>A planar, mostly horizontal element: floor, ceiling deck or base slab.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcSlab</code></div></div>
+<div class="term" id="SolarDevice"><h3>Solar device <code>tec:SolarDevice</code></h3><div>A solar panel or collector.</div><div class="meta">Subclass of: <a href="#EnergyConversionDevice"><code>tec:EnergyConversionDevice</code></a></div><div class="meta">IFC: <code>IfcSolarDevice</code></div></div>
 <div class="term" id="Space"><h3>Space <code>tec:Space</code></h3><div>A physical void volume bounded by elements. It carries no human meaning by itself: names and functions belong to a tec:Room laid over it.</div><div class="meta">Subclass of: <code>bot:Space</code>, <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcSpace</code></div></div>
+<div class="term" id="SpaceHeater"><h3>Space heater <code>tec:SpaceHeater</code></h3><div>A radiator, convector or other heater that warms a space.</div><div class="meta">Subclass of: <a href="#FlowTerminal"><code>tec:FlowTerminal</code></a></div><div class="meta">IFC: <code>IfcSpaceHeater</code></div></div>
 <div class="term" id="SpatialElement"><h3>Spatial element <code>tec:SpatialElement</code></h3><div>A part of the world defined by its extent rather than by matter: site, building, storey or space.</div><div class="meta">Subclass of: <code>bot:Zone</code></div><div class="meta">IFC: <code>IfcSpatialElement</code></div></div>
+<div class="term" id="SpatialZone"><h3>Spatial zone <code>tec:SpatialZone</code></h3><div>A volume defined for a purpose that cuts across the spatial structure, such as a fire compartment, a thermal zone or the gross volume of a house. It is not matter and does not bound spaces.</div><div class="meta">Subclass of: <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcSpatialZone</code></div></div>
 <div class="term" id="Stair"><h3>Stair <code>tec:Stair</code></h3><div>A vertical passage made of flights and landings that connects spaces on different levels.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcStair</code></div></div>
 <div class="term" id="StairFlight"><h3>Stair flight <code>tec:StairFlight</code></h3><div>An uninterrupted run of steps, part of a stair.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcStairFlight</code></div></div>
 <div class="term" id="Storey"><h3>Storey <code>tec:Storey</code></h3><div>A horizontal level of a building with an elevation, decomposed into spaces.</div><div class="meta">Subclass of: <code>bot:Storey</code>, <a href="#SpatialElement"><code>tec:SpatialElement</code></a></div><div class="meta">IFC: <code>IfcBuildingStorey</code></div></div>
-<div class="term" id="Terrain"><h3>Terrain <code>tec:Terrain</code></h3><div>The ground of a site as a physical element.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcGeographicElement</code> PredefinedType <code>TERRAIN</code></div></div>
+<div class="term" id="Stratum"><h3>Stratum <code>tec:Stratum</code></h3><div>A layer of soil or rock in the ground.</div><div class="meta">Subclass of: <a href="#GeotechnicalElement"><code>tec:GeotechnicalElement</code></a></div><div class="meta">IFC: <code>IfcGeotechnicalStratum</code></div></div>
+<div class="term" id="StructuralAnalysisItem"><h3>Structural analysis item <code>tec:StructuralAnalysisItem</code></h3><div>A member, surface or connection of a structural analysis model: an idealisation of physical elements as lines, surfaces and points, not an element itself.</div><div class="meta">Subclass of: <a href="#InformationProduct"><code>tec:InformationProduct</code></a></div><div class="meta">IFC: <code>IfcStructuralItem</code></div></div>
+<div class="term" id="StructuralLoad"><h3>Structural load <code>tec:StructuralLoad</code></h3><div>A load or a reaction in a structural analysis model.</div><div class="meta">Subclass of: <a href="#InformationProduct"><code>tec:InformationProduct</code></a></div><div class="meta">IFC: <code>IfcStructuralActivity</code></div></div>
+<div class="term" id="Switch"><h3>Switch <code>tec:Switch</code></h3><div>A light switch or other device that switches power.</div><div class="meta">Subclass of: <a href="#FlowController"><code>tec:FlowController</code></a></div><div class="meta">IFC: <code>IfcSwitchingDevice</code></div></div>
+<div class="term" id="SystemFurniture"><h3>System furniture <code>tec:SystemFurniture</code></h3><div>A part of a modular furniture system, such as an office partition panel or a worktop.</div><div class="meta">Subclass of: <a href="#Furnishing"><code>tec:Furnishing</code></a></div><div class="meta">IFC: <code>IfcSystemFurnitureElement</code></div></div>
+<div class="term" id="Tank"><h3>Tank <code>tec:Tank</code></h3><div>A vessel that stores a liquid or a gas.</div><div class="meta">Subclass of: <a href="#FlowStorageDevice"><code>tec:FlowStorageDevice</code></a></div><div class="meta">IFC: <code>IfcTank</code></div></div>
+<div class="term" id="Terrain"><h3>Terrain <code>tec:Terrain</code></h3><div>The ground of a site as a physical element.</div><div class="meta">Subclass of: <a href="#GeographicElement"><code>tec:GeographicElement</code></a></div><div class="meta">IFC: <code>IfcGeographicElement</code> PredefinedType <code>TERRAIN</code></div></div>
+<div class="term" id="TrackElement"><h3>Track element <code>tec:TrackElement</code></h3><div>A part of a railway track other than the rail itself: a sleeper, a buffer stop, a fastening.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcTrackElement</code></div></div>
+<div class="term" id="Transformer"><h3>Transformer <code>tec:Transformer</code></h3><div>An electrical transformer, from a substation to a doorbell.</div><div class="meta">Subclass of: <a href="#EnergyConversionDevice"><code>tec:EnergyConversionDevice</code></a></div><div class="meta">IFC: <code>IfcTransformer</code></div></div>
+<div class="term" id="TransportElement"><h3>Transport element <code>tec:TransportElement</code></h3><div>Equipment that moves people or goods within a facility: an elevator, escalator, moving walkway or crane.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcTransportElement</code></div></div>
+<div class="term" id="UnclassifiedElement"><h3>Unclassified element <code>tec:UnclassifiedElement</code></h3><div>A built element its authoring tool did not classify (an IFC proxy): anything from a chimney modelled as a plain box to a helper marker. It is matter unless its element role says otherwise.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcBuildingElementProxy</code></div></div>
+<div class="term" id="UnclassifiedProduct"><h3>Unclassified product <code>tec:UnclassifiedProduct</code></h3><div>A product whose kind IFC does not say, such as an IfcProxy in an IFC4 or IFC2X3 file (IFC 4.3 dropped IfcProxy). Kept so that every product has a layer entry; it is never matter.</div><div class="meta">Subclass of: <code>http://www.w3.org/2002/07/owl#Thing</code></div><div class="meta">IFC: <code>IfcProduct</code></div></div>
+<div class="term" id="Valve"><h3>Valve <code>tec:Valve</code></h3><div>A valve that opens, closes or regulates a pipe.</div><div class="meta">Subclass of: <a href="#FlowController"><code>tec:FlowController</code></a></div><div class="meta">IFC: <code>IfcValve</code></div></div>
+<div class="term" id="Vegetation"><h3>Vegetation <code>tec:Vegetation</code></h3><div>Trees, hedges, lawns and other plants as physical elements of a site.</div><div class="meta">Subclass of: <a href="#GeographicElement"><code>tec:GeographicElement</code></a></div><div class="meta">IFC: <code>IfcGeographicElement</code> PredefinedType <code>VEGETATION</code></div></div>
+<div class="term" id="Vehicle"><h3>Vehicle <code>tec:Vehicle</code></h3><div>A vehicle modelled as part of a facility, such as a cable car cabin or a ferry.</div><div class="meta">Subclass of: <a href="#PhysicalElement"><code>tec:PhysicalElement</code></a></div><div class="meta">IFC: <code>IfcVehicle</code></div></div>
+<div class="term" id="VibrationDamper"><h3>Vibration damper <code>tec:VibrationDamper</code></h3><div>A device that absorbs vibration in a structure.</div><div class="meta">Subclass of: <a href="#ConstructionPart"><code>tec:ConstructionPart</code></a></div><div class="meta">IFC: <code>IfcVibrationDamper</code></div></div>
+<div class="term" id="VibrationIsolator"><h3>Vibration isolator <code>tec:VibrationIsolator</code></h3><div>A spring or pad that keeps vibration of a machine away from the structure.</div><div class="meta">Subclass of: <a href="#ConstructionPart"><code>tec:ConstructionPart</code></a></div><div class="meta">IFC: <code>IfcVibrationIsolator</code></div></div>
+<div class="term" id="VirtualElement"><h3>Virtual element <code>tec:VirtualElement</code></h3><div>A boundary without matter, used to divide spaces where nothing physical does, such as a line across an open plan. Its element role is zone.</div><div class="meta">Subclass of: <code>bot:Element</code></div><div class="meta">IFC: <code>IfcVirtualElement</code></div></div>
 <div class="term" id="Wall"><h3>Wall <code>tec:Wall</code></h3><div>A vertical element that bounds or subdivides spaces. Openings are placed on its plane by coordinates along and up the wall.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcWall</code></div></div>
 <div class="term" id="Wardrobe"><h3>Wardrobe <code>tec:Wardrobe</code></h3><div>A tall cupboard for clothes.</div><div class="meta">Subclass of: <a href="#Container"><code>tec:Container</code></a>, <a href="#Furnishing"><code>tec:Furnishing</code></a></div><div class="meta">IFC: <code>IfcFurniture</code> PredefinedType <code>USERDEFINED</code> ObjectType <code>WARDROBE</code></div></div>
 <div class="term" id="Window"><h3>Window <code>tec:Window</code></h3><div>A built element that fills an opening and admits light and view but is not a passage.</div><div class="meta">Subclass of: <a href="#BuiltElement"><code>tec:BuiltElement</code></a></div><div class="meta">IFC: <code>IfcWindow</code></div></div>

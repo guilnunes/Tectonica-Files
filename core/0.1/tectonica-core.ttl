@@ -80,7 +80,7 @@ tec:Site a owl:Class ;
     rdfs:comment "A piece of land with its built and unbuilt parts; the root of the spatial structure of a project."@en .
 
 tec:Building a owl:Class ;
-    rdfs:subClassOf tec:SpatialElement , bot:Building ;
+    rdfs:subClassOf tec:Facility , bot:Building ;
     tec:ifcClass "IfcBuilding" ;
     rdfs:label "Building"@en ;
     rdfs:comment "A structure that provides shelter, located on a site and decomposed into storeys."@en .
@@ -103,6 +103,54 @@ tec:ExteriorSpace a owl:Class ;
     tec:ifcPredefinedType "EXTERNAL" ;
     rdfs:label "Exterior space"@en ;
     rdfs:comment "The open space of a site outside buildings. It is the 'outside' node of topology graphs."@en .
+
+tec:Facility a owl:Class ;
+    rdfs:subClassOf tec:SpatialElement ;
+    tec:ifcClass "IfcFacility" ;
+    rdfs:label "Facility"@en ;
+    rdfs:comment "A built work as a whole, such as a building, bridge, road, railway or port, decomposed into parts or storeys. IFC 4.3 entity; IFC4 knows only IfcBuilding."@en .
+
+tec:Bridge a owl:Class ;
+    rdfs:subClassOf tec:Facility ;
+    tec:ifcClass "IfcBridge" ;
+    rdfs:label "Bridge"@en ;
+    rdfs:comment "A facility that carries a road, railway or path over an obstacle such as a river or a valley."@en .
+
+tec:Road a owl:Class ;
+    rdfs:subClassOf tec:Facility ;
+    tec:ifcClass "IfcRoad" ;
+    rdfs:label "Road"@en ;
+    rdfs:comment "A facility for road traffic as a spatial whole, decomposed into road parts. The paved surface itself is a tec:RoadSurface element."@en .
+
+tec:Railway a owl:Class ;
+    rdfs:subClassOf tec:Facility ;
+    tec:ifcClass "IfcRailway" ;
+    rdfs:label "Railway"@en ;
+    rdfs:comment "A facility for rail traffic as a spatial whole, decomposed into railway parts."@en .
+
+tec:MarineFacility a owl:Class ;
+    rdfs:subClassOf tec:Facility ;
+    tec:ifcClass "IfcMarineFacility" ;
+    rdfs:label "Marine facility"@en ;
+    rdfs:comment "A port, quay, breakwater, canal or other facility at the water."@en .
+
+tec:FacilityPart a owl:Class ;
+    rdfs:subClassOf tec:SpatialElement ;
+    tec:ifcClass "IfcFacilityPart" ;
+    rdfs:label "Facility part"@en ;
+    rdfs:comment "A spatial part of a facility, such as a road segment, a bridge span or a section of railway track."@en .
+
+tec:SpatialZone a owl:Class ;
+    rdfs:subClassOf tec:SpatialElement ;
+    tec:ifcClass "IfcSpatialZone" ;
+    rdfs:label "Spatial zone"@en ;
+    rdfs:comment "A volume defined for a purpose that cuts across the spatial structure, such as a fire compartment, a thermal zone or the gross volume of a house. It is not matter and does not bound spaces."@en .
+
+tec:ExternalArea a owl:Class ;
+    rdfs:subClassOf tec:SpatialElement ;
+    tec:ifcClass "IfcExternalSpatialElement" ;
+    rdfs:label "External area"@en ;
+    rdfs:comment "An outside part of a site defined by its extent, such as a garden, a yard or a parking area."@en .
 
 #################################################################
 # Classes: physical objects and elements
@@ -150,7 +198,7 @@ tec:Roof a owl:Class ;
     rdfs:comment "The covering of the top of a building, usually an aggregate of roof slabs."@en .
 
 tec:Opening a owl:Class ;
-    rdfs:subClassOf bot:Element ;
+    rdfs:subClassOf tec:Feature ;
     tec:ifcClass "IfcOpeningElement" ;
     rdfs:label "Opening"@en ;
     rdfs:comment "A void cut through a host element, placed parametrically on the host. It is not matter; a door or window may fill it, or it may stay open as a passage."@en .
@@ -198,7 +246,7 @@ tec:Curb a owl:Class ;
     rdfs:comment "A raised edge between a road surface and a sidewalk or verge. IFC 4.3 entity (IfcKerb); no IFC4 equivalent."@en .
 
 tec:Terrain a owl:Class ;
-    rdfs:subClassOf tec:PhysicalElement ;
+    rdfs:subClassOf tec:GeographicElement ;
     tec:ifcClass "IfcGeographicElement" ;
     tec:ifcPredefinedType "TERRAIN" ;
     rdfs:label "Terrain"@en ;
@@ -206,7 +254,7 @@ tec:Terrain a owl:Class ;
 
 tec:Furnishing a owl:Class ;
     rdfs:subClassOf tec:PhysicalElement ;
-    tec:ifcClass "IfcFurniture" ;
+    tec:ifcClass "IfcFurnishingElement" ;
     rdfs:label "Furnishing"@en ;
     rdfs:comment "A movable but placed physical element such as furniture or a mat (IfcFurnishingElement family)."@en .
 
@@ -218,6 +266,505 @@ tec:Mat a owl:Class ;
     rdfs:label "Mat"@en ;
     rdfs:comment "A flat textile or fibre object lying on a floor or the ground, such as a doormat. Objects can be placed under it."@en .
 
+tec:Beam a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcBeam" ;
+    rdfs:label "Beam"@en ;
+    rdfs:comment "A mostly horizontal linear element that carries loads across a span to columns or walls."@en .
+
+tec:Column a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcColumn" ;
+    rdfs:label "Column"@en ;
+    rdfs:comment "A mostly vertical linear element that carries loads down towards the foundation."@en .
+
+tec:Member a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcMember" ;
+    rdfs:label "Member"@en ;
+    rdfs:comment "A linear element that is neither a beam nor a column: a brace, strut, rafter, purlin or mullion."@en .
+
+tec:Plate a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcPlate" ;
+    rdfs:label "Plate"@en ;
+    rdfs:comment "A thin planar element, such as a glass pane in a curtain wall or a steel sheet."@en .
+
+tec:Footing a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcFooting" ;
+    rdfs:label "Footing"@en ;
+    rdfs:comment "A shallow foundation that spreads the load of a wall or column into the ground."@en .
+
+tec:DeepFoundation a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcDeepFoundation" ;
+    rdfs:label "Deep foundation"@en ;
+    rdfs:comment "A foundation that carries loads deep into the ground, such as a pile or a caisson."@en .
+
+tec:Pile a owl:Class ;
+    rdfs:subClassOf tec:DeepFoundation ;
+    tec:ifcClass "IfcPile" ;
+    rdfs:label "Pile"@en ;
+    rdfs:comment "A slender deep foundation driven or cast into the ground."@en .
+
+tec:Bearing a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcBearing" ;
+    rdfs:label "Bearing"@en ;
+    rdfs:comment "A device that passes loads between parts of a structure while letting them move, as between a bridge deck and its piers."@en .
+
+tec:CurtainWall a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcCurtainWall" ;
+    rdfs:label "Curtain wall"@en ;
+    rdfs:comment "An outer wall that carries no floor loads and hangs on the structure, usually a frame of members filled with glass or panels."@en .
+
+tec:Covering a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcCovering" ;
+    rdfs:label "Covering"@en ;
+    rdfs:comment "A finish or layer applied to another element: flooring, ceiling, cladding, roofing, insulation or skirting."@en .
+
+tec:Ceiling a owl:Class ;
+    rdfs:subClassOf tec:Covering ;
+    tec:ifcClass "IfcCovering" ;
+    tec:ifcPredefinedType "CEILING" ;
+    rdfs:label "Ceiling"@en ;
+    rdfs:comment "A covering on the underside of a slab or roof that closes a space at the top."@en .
+
+tec:Flooring a owl:Class ;
+    rdfs:subClassOf tec:Covering ;
+    tec:ifcClass "IfcCovering" ;
+    tec:ifcPredefinedType "FLOORING" ;
+    rdfs:label "Flooring"@en ;
+    rdfs:comment "The walking surface laid on a floor slab, such as tiles, boards or carpet."@en .
+
+tec:Cladding a owl:Class ;
+    rdfs:subClassOf tec:Covering ;
+    tec:ifcClass "IfcCovering" ;
+    tec:ifcPredefinedType "CLADDING" ;
+    rdfs:label "Cladding"@en ;
+    rdfs:comment "An outer layer on a wall that protects it from the weather and gives the facade its look."@en .
+
+tec:RoofCovering a owl:Class ;
+    rdfs:subClassOf tec:Covering ;
+    tec:ifcClass "IfcCovering" ;
+    tec:ifcPredefinedType "ROOFING" ;
+    rdfs:label "Roof covering"@en ;
+    rdfs:comment "The weatherproof outer layer of a roof, such as tiles, sheets or a membrane."@en .
+
+tec:ShadingDevice a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcShadingDevice" ;
+    rdfs:label "Shading device"@en ;
+    rdfs:comment "A fixed or movable element that shades windows or facades: louvres, awnings, shutters."@en .
+
+tec:Chimney a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcChimney" ;
+    rdfs:label "Chimney"@en ;
+    rdfs:comment "A vertical element that carries smoke or exhaust gases out of a building."@en .
+
+tec:Ramp a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcRamp" ;
+    rdfs:label "Ramp"@en ;
+    rdfs:comment "An inclined surface that connects levels for walking, wheelchairs or vehicles, made of ramp flights and landings."@en .
+
+tec:RampFlight a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcRampFlight" ;
+    rdfs:label "Ramp flight"@en ;
+    rdfs:comment "An uninterrupted inclined run, part of a ramp."@en .
+
+tec:TransportElement a owl:Class ;
+    rdfs:subClassOf tec:PhysicalElement ;
+    tec:ifcClass "IfcTransportElement" ;
+    rdfs:label "Transport element"@en ;
+    rdfs:comment "Equipment that moves people or goods within a facility: an elevator, escalator, moving walkway or crane."@en .
+
+tec:Elevator a owl:Class ;
+    rdfs:subClassOf tec:TransportElement ;
+    tec:ifcClass "IfcTransportElement" ;
+    tec:ifcPredefinedType "ELEVATOR" ;
+    rdfs:label "Elevator"@en ;
+    rdfs:comment "A car that carries people or goods vertically between levels."@en .
+
+tec:Escalator a owl:Class ;
+    rdfs:subClassOf tec:TransportElement ;
+    tec:ifcClass "IfcTransportElement" ;
+    tec:ifcPredefinedType "ESCALATOR" ;
+    rdfs:label "Escalator"@en ;
+    rdfs:comment "A moving stair that carries people between levels."@en .
+
+tec:Vehicle a owl:Class ;
+    rdfs:subClassOf tec:PhysicalElement ;
+    tec:ifcClass "IfcVehicle" ;
+    rdfs:label "Vehicle"@en ;
+    rdfs:comment "A vehicle modelled as part of a facility, such as a cable car cabin or a ferry."@en .
+
+tec:CivilElement a owl:Class ;
+    rdfs:subClassOf tec:PhysicalElement ;
+    tec:ifcClass "IfcCivilElement" ;
+    rdfs:label "Civil element"@en ;
+    rdfs:comment "A civil engineering element for which IFC has no more specific class."@en .
+
+tec:Course a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcCourse" ;
+    rdfs:label "Course"@en ;
+    rdfs:comment "A layer of a built-up construction, such as a pavement layer, a railway ballast bed or a breakwater armour layer."@en .
+
+tec:Rail a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcRail" ;
+    rdfs:label "Rail"@en ;
+    rdfs:comment "A rail of a railway or tram track."@en .
+
+tec:TrackElement a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcTrackElement" ;
+    rdfs:label "Track element"@en ;
+    rdfs:comment "A part of a railway track other than the rail itself: a sleeper, a buffer stop, a fastening."@en .
+
+tec:MooringDevice a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcMooringDevice" ;
+    rdfs:label "Mooring device"@en ;
+    rdfs:comment "A bollard, fender or other device used to moor vessels."@en .
+
+tec:NavigationElement a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcNavigationElement" ;
+    rdfs:label "Navigation element"@en ;
+    rdfs:comment "A beacon, buoy or other aid to navigation on water."@en .
+
+tec:EarthworksElement a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcEarthworksElement" ;
+    rdfs:label "Earthworks element"@en ;
+    rdfs:comment "A body of soil or rock placed as part of a construction."@en .
+
+tec:EarthworksFill a owl:Class ;
+    rdfs:subClassOf tec:EarthworksElement ;
+    tec:ifcClass "IfcEarthworksFill" ;
+    rdfs:label "Earthworks fill"@en ;
+    rdfs:comment "Soil, sand or other bulk material placed to raise or level the ground, such as an embankment or the bedding under a floor slab."@en .
+
+tec:ReinforcedSoil a owl:Class ;
+    rdfs:subClassOf tec:EarthworksElement ;
+    tec:ifcClass "IfcReinforcedSoil" ;
+    rdfs:label "Reinforced soil"@en ;
+    rdfs:comment "Soil strengthened with layers of reinforcement, as in a retaining embankment."@en .
+
+tec:GeographicElement a owl:Class ;
+    rdfs:subClassOf tec:PhysicalElement ;
+    tec:ifcClass "IfcGeographicElement" ;
+    rdfs:label "Geographic element"@en ;
+    rdfs:comment "A natural or landscape element of a site, such as terrain or vegetation."@en .
+
+tec:Vegetation a owl:Class ;
+    rdfs:subClassOf tec:GeographicElement ;
+    tec:ifcClass "IfcGeographicElement" ;
+    tec:ifcPredefinedType "VEGETATION" ;
+    rdfs:label "Vegetation"@en ;
+    rdfs:comment "Trees, hedges, lawns and other plants as physical elements of a site."@en .
+
+tec:GeotechnicalElement a owl:Class ;
+    rdfs:subClassOf tec:PhysicalElement ;
+    tec:ifcClass "IfcGeotechnicalElement" ;
+    rdfs:label "Geotechnical element"@en ;
+    rdfs:comment "The ground below the surface as known from investigation: soil and rock layers, boreholes, ground models."@en .
+
+tec:Stratum a owl:Class ;
+    rdfs:subClassOf tec:GeotechnicalElement ;
+    tec:ifcClass "IfcGeotechnicalStratum" ;
+    rdfs:label "Stratum"@en ;
+    rdfs:comment "A layer of soil or rock in the ground."@en .
+
+tec:DistributionElement a owl:Class ;
+    rdfs:subClassOf tec:PhysicalElement ;
+    tec:ifcClass "IfcDistributionElement" ;
+    rdfs:label "Distribution element"@en ;
+    rdfs:comment "A part of the services of a building or a city: water, drainage, gas, heating, ventilation, power, lighting or data."@en .
+
+tec:FlowSegment a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcFlowSegment" ;
+    rdfs:label "Flow segment"@en ;
+    rdfs:comment "A run of pipe, duct, cable or cable tray that carries a flow."@en .
+
+tec:Pipe a owl:Class ;
+    rdfs:subClassOf tec:FlowSegment ;
+    tec:ifcClass "IfcPipeSegment" ;
+    rdfs:label "Pipe"@en ;
+    rdfs:comment "A pipe that carries water, gas, sewage or another fluid."@en .
+
+tec:Duct a owl:Class ;
+    rdfs:subClassOf tec:FlowSegment ;
+    tec:ifcClass "IfcDuctSegment" ;
+    rdfs:label "Duct"@en ;
+    rdfs:comment "A duct that carries air."@en .
+
+tec:Cable a owl:Class ;
+    rdfs:subClassOf tec:FlowSegment ;
+    tec:ifcClass "IfcCableSegment" ;
+    rdfs:label "Cable"@en ;
+    rdfs:comment "A cable that carries power or data."@en .
+
+tec:FlowFitting a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcFlowFitting" ;
+    rdfs:label "Flow fitting"@en ;
+    rdfs:comment "A bend, tee, junction box or other connector between flow segments."@en .
+
+tec:FlowTerminal a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcFlowTerminal" ;
+    rdfs:label "Flow terminal"@en ;
+    rdfs:comment "A device where a flow ends or is used: a tap, toilet, light, socket or air outlet."@en .
+
+tec:SanitaryTerminal a owl:Class ;
+    rdfs:subClassOf tec:FlowTerminal ;
+    tec:ifcClass "IfcSanitaryTerminal" ;
+    rdfs:label "Sanitary terminal"@en ;
+    rdfs:comment "A toilet, washbasin, sink, bath or shower."@en .
+
+tec:LightFixture a owl:Class ;
+    rdfs:subClassOf tec:FlowTerminal ;
+    tec:ifcClass "IfcLightFixture" ;
+    rdfs:label "Light fixture"@en ;
+    rdfs:comment "A light fitting, indoors or in a street."@en .
+
+tec:Outlet a owl:Class ;
+    rdfs:subClassOf tec:FlowTerminal ;
+    tec:ifcClass "IfcOutlet" ;
+    rdfs:label "Outlet"@en ;
+    rdfs:comment "A socket for power or data."@en .
+
+tec:ElectricAppliance a owl:Class ;
+    rdfs:subClassOf tec:FlowTerminal ;
+    tec:ifcClass "IfcElectricAppliance" ;
+    rdfs:label "Electric appliance"@en ;
+    rdfs:comment "An appliance connected to power, such as a refrigerator, cooker or washing machine."@en .
+
+tec:SpaceHeater a owl:Class ;
+    rdfs:subClassOf tec:FlowTerminal ;
+    tec:ifcClass "IfcSpaceHeater" ;
+    rdfs:label "Space heater"@en ;
+    rdfs:comment "A radiator, convector or other heater that warms a space."@en .
+
+tec:AirTerminal a owl:Class ;
+    rdfs:subClassOf tec:FlowTerminal ;
+    tec:ifcClass "IfcAirTerminal" ;
+    rdfs:label "Air terminal"@en ;
+    rdfs:comment "A grille or diffuser where air enters or leaves a space."@en .
+
+tec:FireSuppressionTerminal a owl:Class ;
+    rdfs:subClassOf tec:FlowTerminal ;
+    tec:ifcClass "IfcFireSuppressionTerminal" ;
+    rdfs:label "Fire suppression terminal"@en ;
+    rdfs:comment "A sprinkler, hydrant or hose reel."@en .
+
+tec:Signal a owl:Class ;
+    rdfs:subClassOf tec:FlowTerminal ;
+    tec:ifcClass "IfcSignal" ;
+    rdfs:label "Signal"@en ;
+    rdfs:comment "A traffic light, railway signal or other signalling light."@en .
+
+tec:FlowController a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcFlowController" ;
+    rdfs:label "Flow controller"@en ;
+    rdfs:comment "A device that regulates or switches a flow: a valve, damper, switch, meter or distribution board."@en .
+
+tec:Valve a owl:Class ;
+    rdfs:subClassOf tec:FlowController ;
+    tec:ifcClass "IfcValve" ;
+    rdfs:label "Valve"@en ;
+    rdfs:comment "A valve that opens, closes or regulates a pipe."@en .
+
+tec:Switch a owl:Class ;
+    rdfs:subClassOf tec:FlowController ;
+    tec:ifcClass "IfcSwitchingDevice" ;
+    rdfs:label "Switch"@en ;
+    rdfs:comment "A light switch or other device that switches power."@en .
+
+tec:DistributionBoard a owl:Class ;
+    rdfs:subClassOf tec:FlowController ;
+    tec:ifcClass "IfcDistributionBoard" ;
+    rdfs:label "Distribution board"@en ;
+    rdfs:comment "A panel that splits a power or data supply into circuits, with its breakers or switches."@en .
+
+tec:FlowMovingDevice a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcFlowMovingDevice" ;
+    rdfs:label "Flow moving device"@en ;
+    rdfs:comment "A pump, fan or compressor that moves a flow."@en .
+
+tec:FlowStorageDevice a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcFlowStorageDevice" ;
+    rdfs:label "Flow storage device"@en ;
+    rdfs:comment "A tank, cistern or battery that stores what flows."@en .
+
+tec:Tank a owl:Class ;
+    rdfs:subClassOf tec:FlowStorageDevice ;
+    tec:ifcClass "IfcTank" ;
+    rdfs:label "Tank"@en ;
+    rdfs:comment "A vessel that stores a liquid or a gas."@en .
+
+tec:FlowTreatmentDevice a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcFlowTreatmentDevice" ;
+    rdfs:label "Flow treatment device"@en ;
+    rdfs:comment "A filter, grease interceptor or silencer that treats a flow."@en .
+
+tec:EnergyConversionDevice a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcEnergyConversionDevice" ;
+    rdfs:label "Energy conversion device"@en ;
+    rdfs:comment "A boiler, chiller, heat pump, transformer, generator or solar panel."@en .
+
+tec:Boiler a owl:Class ;
+    rdfs:subClassOf tec:EnergyConversionDevice ;
+    tec:ifcClass "IfcBoiler" ;
+    rdfs:label "Boiler"@en ;
+    rdfs:comment "A boiler that heats water for heating or hot water."@en .
+
+tec:SolarDevice a owl:Class ;
+    rdfs:subClassOf tec:EnergyConversionDevice ;
+    tec:ifcClass "IfcSolarDevice" ;
+    rdfs:label "Solar device"@en ;
+    rdfs:comment "A solar panel or collector."@en .
+
+tec:Transformer a owl:Class ;
+    rdfs:subClassOf tec:EnergyConversionDevice ;
+    tec:ifcClass "IfcTransformer" ;
+    rdfs:label "Transformer"@en ;
+    rdfs:comment "An electrical transformer, from a substation to a doorbell."@en .
+
+tec:DistributionChamber a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcDistributionChamberElement" ;
+    rdfs:label "Distribution chamber"@en ;
+    rdfs:comment "A manhole, inspection chamber, trench or duct bank that houses services and gives access to them."@en .
+
+tec:ControlElement a owl:Class ;
+    rdfs:subClassOf tec:DistributionElement ;
+    tec:ifcClass "IfcDistributionControlElement" ;
+    rdfs:label "Control element"@en ;
+    rdfs:comment "A sensor, alarm, actuator or controller of services."@en .
+
+tec:Sensor a owl:Class ;
+    rdfs:subClassOf tec:ControlElement ;
+    tec:ifcClass "IfcSensor" ;
+    rdfs:label "Sensor"@en ;
+    rdfs:comment "A device that measures something, such as temperature, smoke or movement."@en .
+
+tec:Alarm a owl:Class ;
+    rdfs:subClassOf tec:ControlElement ;
+    tec:ifcClass "IfcAlarm" ;
+    rdfs:label "Alarm"@en ;
+    rdfs:comment "A bell, siren or light that warns people."@en .
+
+tec:ElementAssembly a owl:Class ;
+    rdfs:subClassOf tec:PhysicalElement ;
+    tec:ifcClass "IfcElementAssembly" ;
+    rdfs:label "Element assembly"@en ;
+    rdfs:comment "A group of elements made or delivered as one unit, such as a truss, a prefabricated stair or a frame."@en .
+
+tec:ConstructionPart a owl:Class ;
+    rdfs:subClassOf tec:PhysicalElement ;
+    tec:ifcClass "IfcElementComponent" ;
+    rdfs:label "Construction part"@en ;
+    rdfs:comment "A small physical part of a built element: a fastener, an accessory, reinforcement, a sign. Not to be confused with tec:Component, a human concept such as a lock, kept on the layer side."@en .
+
+tec:ElementPart a owl:Class ;
+    rdfs:subClassOf tec:ConstructionPart ;
+    tec:ifcClass "IfcBuildingElementPart" ;
+    rdfs:label "Element part"@en ;
+    rdfs:comment "A piece of a built element modelled on its own, such as one layer of a wall."@en .
+
+tec:Fastener a owl:Class ;
+    rdfs:subClassOf tec:ConstructionPart ;
+    tec:ifcClass "IfcFastener" ;
+    rdfs:label "Fastener"@en ;
+    rdfs:comment "A screw, bolt, nail, weld or glue joint that holds parts together."@en .
+
+tec:MechanicalFastener a owl:Class ;
+    rdfs:subClassOf tec:Fastener ;
+    tec:ifcClass "IfcMechanicalFastener" ;
+    rdfs:label "Mechanical fastener"@en ;
+    rdfs:comment "A bolt, screw, nail or anchor."@en .
+
+tec:Accessory a owl:Class ;
+    rdfs:subClassOf tec:ConstructionPart ;
+    tec:ifcClass "IfcDiscreteAccessory" ;
+    rdfs:label "Accessory"@en ;
+    rdfs:comment "A small fixed accessory, such as a bracket, a hanger or a shoe."@en .
+
+tec:Reinforcement a owl:Class ;
+    rdfs:subClassOf tec:ConstructionPart ;
+    tec:ifcClass "IfcReinforcingElement" ;
+    rdfs:label "Reinforcement"@en ;
+    rdfs:comment "Steel bars, meshes or tendons inside concrete."@en .
+
+tec:Sign a owl:Class ;
+    rdfs:subClassOf tec:ConstructionPart ;
+    tec:ifcClass "IfcSign" ;
+    rdfs:label "Sign"@en ;
+    rdfs:comment "A sign with text or symbols, such as a road sign or a room sign."@en .
+
+tec:ImpactProtection a owl:Class ;
+    rdfs:subClassOf tec:ConstructionPart ;
+    tec:ifcClass "IfcImpactProtectionDevice" ;
+    rdfs:label "Impact protection"@en ;
+    rdfs:comment "A crash barrier, bumper or other device that absorbs impacts."@en .
+
+tec:VibrationDamper a owl:Class ;
+    rdfs:subClassOf tec:ConstructionPart ;
+    tec:ifcClass "IfcVibrationDamper" ;
+    rdfs:label "Vibration damper"@en ;
+    rdfs:comment "A device that absorbs vibration in a structure."@en .
+
+tec:VibrationIsolator a owl:Class ;
+    rdfs:subClassOf tec:ConstructionPart ;
+    tec:ifcClass "IfcVibrationIsolator" ;
+    rdfs:label "Vibration isolator"@en ;
+    rdfs:comment "A spring or pad that keeps vibration of a machine away from the structure."@en .
+
+tec:UnclassifiedElement a owl:Class ;
+    rdfs:subClassOf tec:BuiltElement ;
+    tec:ifcClass "IfcBuildingElementProxy" ;
+    rdfs:label "Unclassified element"@en ;
+    rdfs:comment "A built element its authoring tool did not classify (an IFC proxy): anything from a chimney modelled as a plain box to a helper marker. It is matter unless its element role says otherwise."@en .
+
+tec:SystemFurniture a owl:Class ;
+    rdfs:subClassOf tec:Furnishing ;
+    tec:ifcClass "IfcSystemFurnitureElement" ;
+    rdfs:label "System furniture"@en ;
+    rdfs:comment "A part of a modular furniture system, such as an office partition panel or a worktop."@en .
+
+tec:VirtualElement a owl:Class ;
+    rdfs:subClassOf bot:Element ;
+    tec:ifcClass "IfcVirtualElement" ;
+    rdfs:label "Virtual element"@en ;
+    rdfs:comment "A boundary without matter, used to divide spaces where nothing physical does, such as a line across an open plan. Its element role is zone."@en .
+
+tec:Feature a owl:Class ;
+    rdfs:subClassOf bot:Element ;
+    tec:ifcClass "IfcFeatureElement" ;
+    rdfs:label "Feature"@en ;
+    rdfs:comment "A change to another element's shape rather than an element of its own: an opening, a recess, a projection, a cut in the ground. It is not matter."@en .
+
+tec:EarthworksCut a owl:Class ;
+    rdfs:subClassOf tec:Feature ;
+    tec:ifcClass "IfcEarthworksCut" ;
+    rdfs:label "Earthworks cut"@en ;
+    rdfs:comment "A volume of ground removed by excavation, such as a trench or a cutting. Like an opening, it is a void."@en .
+
 tec:PortableObject a owl:Class ;
     rdfs:subClassOf tec:PhysicalObject ;
     rdfs:label "Portable object"@en ;
@@ -227,6 +774,69 @@ tec:Item a owl:Class ;
     rdfs:subClassOf tec:PortableObject ;
     rdfs:label "Item"@en ;
     rdfs:comment "A portable object that can be held in a container, for example clothing or a book."@en .
+
+#################################################################
+# Classes: information products (described, never matter)
+#################################################################
+
+tec:InformationProduct a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:label "Information product"@en ;
+    rdfs:comment "A product of an IFC model that describes or positions the built world rather than being part of it: annotations, grids and alignments, connection ports, structural analysis models. Every IFC product gets a layer entry, so these have classes too, but they are never matter."@en .
+
+tec:UnclassifiedProduct a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    tec:ifcClass "IfcProduct" ;
+    rdfs:label "Unclassified product"@en ;
+    rdfs:comment "A product whose kind IFC does not say, such as an IfcProxy in an IFC4 or IFC2X3 file (IFC 4.3 dropped IfcProxy). Kept so that every product has a layer entry; it is never matter."@en .
+
+tec:Annotation a owl:Class ;
+    rdfs:subClassOf tec:InformationProduct ;
+    tec:ifcClass "IfcAnnotation" ;
+    rdfs:label "Annotation"@en ;
+    rdfs:comment "A drawing note, dimension, label or survey mark. Its element role is marker."@en .
+
+tec:PositioningElement a owl:Class ;
+    rdfs:subClassOf tec:InformationProduct ;
+    tec:ifcClass "IfcPositioningElement" ;
+    rdfs:label "Positioning element"@en ;
+    rdfs:comment "Geometry used to place other things: a grid, an alignment, a reference point along a road."@en .
+
+tec:Grid a owl:Class ;
+    rdfs:subClassOf tec:PositioningElement ;
+    tec:ifcClass "IfcGrid" ;
+    rdfs:label "Grid"@en ;
+    rdfs:comment "A set of grid lines that columns and walls are set out on."@en .
+
+tec:Alignment a owl:Class ;
+    rdfs:subClassOf tec:PositioningElement ;
+    tec:ifcClass "IfcAlignment" ;
+    rdfs:label "Alignment"@en ;
+    rdfs:comment "The centre line of a road, railway or other linear facility, with its horizontal and vertical layout."@en .
+
+tec:AlignmentLayout a owl:Class ;
+    rdfs:subClassOf tec:InformationProduct ;
+    tec:ifcClass "IfcLinearElement" ;
+    rdfs:label "Alignment layout"@en ;
+    rdfs:comment "A curve an alignment is made of: its horizontal, vertical or cant layout, or one of their segments."@en .
+
+tec:Port a owl:Class ;
+    rdfs:subClassOf tec:InformationProduct ;
+    tec:ifcClass "IfcPort" ;
+    rdfs:label "Port"@en ;
+    rdfs:comment "A connection point of a services element, where a pipe, duct or cable attaches."@en .
+
+tec:StructuralAnalysisItem a owl:Class ;
+    rdfs:subClassOf tec:InformationProduct ;
+    tec:ifcClass "IfcStructuralItem" ;
+    rdfs:label "Structural analysis item"@en ;
+    rdfs:comment "A member, surface or connection of a structural analysis model: an idealisation of physical elements as lines, surfaces and points, not an element itself."@en .
+
+tec:StructuralLoad a owl:Class ;
+    rdfs:subClassOf tec:InformationProduct ;
+    tec:ifcClass "IfcStructuralActivity" ;
+    rdfs:label "Structural load"@en ;
+    rdfs:comment "A load or a reaction in a structural analysis model."@en .
 
 #################################################################
 # Classes: components (human concepts as parts)
