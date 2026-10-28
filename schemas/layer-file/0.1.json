@@ -43,7 +43,8 @@
     "passages": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/passage"}},
     "rules": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/rule"}},
     "provenance": {"$ref": "#/$defs/section", "additionalProperties": {"$ref": "#/$defs/provenance"}},
-    "migrations": {"type": "array", "items": {"$ref": "#/$defs/migration"}}
+    "migrations": {"type": "array", "items": {"$ref": "#/$defs/migration"}},
+    "referenceFrame": {"$ref": "#/$defs/referenceFrame"}
   },
   "$defs": {
     "guid": {"type": "string", "pattern": "^[0-3][0-9A-Za-z_$]{21}$"},
@@ -151,6 +152,29 @@
         "function": {"type": "string", "pattern": "^[A-Z][A-Za-z]+$"},
         "overlays": {"$ref": "#/$defs/guid"},
         "includes": {"$ref": "#/$defs/guids"}
+      }
+    },
+    "referenceFrame": {
+      "description": "Layer L0 stated in the layer file (ADR 0024): map = origin + mapScale * rotation(local metres).",
+      "type": "object",
+      "required": ["id", "type", "path", "label", "crs", "eastings", "northings", "orthogonalHeight", "xAxisAbscissa", "xAxisOrdinate", "mapScale"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"$ref": "#/$defs/guid"},
+        "type": {"const": "ReferenceFrame"},
+        "path": {"$ref": "#/$defs/path"},
+        "label": {"type": "string"},
+        "crs": {"type": "string", "minLength": 1},
+        "crsDescription": {"type": "string"},
+        "eastings": {"type": "number"},
+        "northings": {"type": "number"},
+        "orthogonalHeight": {"type": "number"},
+        "xAxisAbscissa": {"type": "number"},
+        "xAxisOrdinate": {"type": "number"},
+        "mapScale": {"type": "number", "exclusiveMinimum": 0},
+        "mapUnitScale": {"type": "number", "exclusiveMinimum": 0},
+        "latitude": {"type": "number", "minimum": -90, "maximum": 90},
+        "longitude": {"type": "number", "minimum": -180, "maximum": 180}
       }
     },
     "migration": {

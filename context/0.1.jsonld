@@ -21,6 +21,7 @@
     "rules": {"@id": "tec:layerRules", "@container": "@id"},
     "provenance": {"@id": "tec:layerProvenance", "@container": "@id"},
     "migrations": {"@id": "tec:layerMigrations"},
+    "referenceFrame": {"@id": "tec:referenceFrame"},
     "changes": {"@id": "tec:changes", "@type": "@json"},
     "generator": {"@id": "tec:generatedBy", "@type": "@id"},
     "generatedBy": {"@id": "tec:generatedBy", "@type": "@id"},

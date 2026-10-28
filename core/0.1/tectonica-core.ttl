@@ -362,6 +362,10 @@ tec:Generator a owl:Class ;
     rdfs:label "Generator"@en ;
     rdfs:comment "The program, with its version, that applied rules to a brief."@en .
 
+tec:ReferenceFrame a owl:Class ;
+    rdfs:label "Reference frame"@en ;
+    rdfs:comment "Layer L0: where a model's local coordinates (metres, Z up) sit in the world, as a coordinate reference system and a map conversion (origin, rotation, scale), the same parameters as IFC's IfcMapConversion. Stated in the layer file only when the IFC file has no georeference or a wrong one (ADR 0024)."@en .
+
 tec:Migration a owl:Class ;
     rdfs:subClassOf prov:Activity ;
     rdfs:label "Migration"@en ;
@@ -562,6 +566,12 @@ tec:layerRules a owl:ObjectProperty ;
     rdfs:label "layer rules"@en ;
     rdfs:comment "Section of a layer file: the rules used by the generator."@en .
 
+tec:referenceFrame a owl:ObjectProperty ;
+    rdfs:domain tec:LayerFile ;
+    rdfs:range tec:ReferenceFrame ;
+    rdfs:label "reference frame"@en ;
+    rdfs:comment "The reference frame a layer file states for its model; it takes precedence over the IFC file's georeference."@en .
+
 tec:layerMigrations a owl:ObjectProperty ;
     rdfs:domain tec:LayerFile ;
     rdfs:range tec:Migration ;
@@ -685,6 +695,72 @@ tec:ifcSha256 a owl:DatatypeProperty ;
     rdfs:range xsd:string ;
     rdfs:label "IFC SHA-256"@en ;
     rdfs:comment "SHA-256 of the IFC file bytes the layer file was written or last migrated for. A matching file is an exact binding; a different file whose GlobalIds still match is a compatible one (ADR 0023)."@en .
+
+tec:crs a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:string ;
+    rdfs:label "coordinate reference system"@en ;
+    rdfs:comment "Identifier of the map's coordinate reference system, usually an EPSG code such as EPSG:32760."@en .
+
+tec:crsDescription a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:string ;
+    rdfs:label "CRS description"@en ;
+    rdfs:comment "Human readable name of the coordinate reference system, such as WGS 84 / UTM zone 60S."@en .
+
+tec:eastings a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "eastings"@en ;
+    rdfs:comment "Map easting of the model's local origin, in map units."@en .
+
+tec:northings a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "northings"@en ;
+    rdfs:comment "Map northing of the model's local origin, in map units."@en .
+
+tec:orthogonalHeight a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "orthogonal height"@en ;
+    rdfs:comment "Height of the model's local origin above the map's vertical datum, in map units."@en .
+
+tec:xAxisAbscissa a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "x axis abscissa"@en ;
+    rdfs:comment "Easting component of the direction of the model's local x axis on the map (with tec:xAxisOrdinate it gives the rotation)."@en .
+
+tec:xAxisOrdinate a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "x axis ordinate"@en ;
+    rdfs:comment "Northing component of the direction of the model's local x axis on the map."@en .
+
+tec:mapScale a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "map scale"@en ;
+    rdfs:comment "Map units per metre of local coordinates; 1 for a metric map without a projection scale factor."@en .
+
+tec:mapUnitScale a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "map unit scale"@en ;
+    rdfs:comment "Metres per map unit; 1 for maps in metres, 0.3048 for maps in feet."@en .
+
+tec:latitude a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "latitude"@en ;
+    rdfs:comment "Approximate latitude of the model in decimal degrees (WGS 84), for display and search only."@en .
+
+tec:longitude a owl:DatatypeProperty ;
+    rdfs:domain tec:ReferenceFrame ;
+    rdfs:range xsd:double ;
+    rdfs:label "longitude"@en ;
+    rdfs:comment "Approximate longitude of the model in decimal degrees (WGS 84), for display and search only."@en .
 
 tec:fromIfcSha256 a owl:DatatypeProperty ;
     rdfs:domain tec:Migration ;
